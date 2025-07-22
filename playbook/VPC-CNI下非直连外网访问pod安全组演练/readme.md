@@ -39,7 +39,8 @@ kubernets版本：>=1.20
 ```
 参考文件:<br>[terraform_addgroup.sh](https://github.com/aliantli/sg_playbook_1/blob/23e03ca41ee3d9d72063de282f02bb76477146a5/playbook/VPC-CNI%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/c)<br>
 [addservice.sh](https://github.com/aliantli/sg_playbook_1/blob/5ac7d518e42481bf563e288e8912280c3c64c713/playbook/VPC-CNI%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/add%20service.sh)<br>
-[原生节点创建](https://cloud.tencent.com/document/product/457/78198)
+[原生节点创建](https://cloud.tencent.com/document/product/457/78198)<br>
+[pod(辅助)网卡安全组配置](https://cloud.tencent.com/document/product/457/50360)
 # 排查演练
 **公网ip获取**
 ```
@@ -80,4 +81,14 @@ Connection: keep-alive
 [root@VM-35-179-tlinux ~]# echo '所需代码' > terraform_delete-all.sh
 [root@VM-35-179-tlinux ~]# sh terraform_delete-all.sh
 资源清理完毕
+```
+**项目结构**
+```
+VPC-CNI下非直连外网访问pod安全组演练/  
+├── addservice.sh       # 一键部署服务并为clb绑定安全组 
+├── readme.md       # 本文档
+├── tccli-delet-all.sh  #tccli工具示例清理脚本
+├── tccli_addgroup.sh  #tccli工具示例一键创建安全组脚本
+├── terraform_delete.sh     # terraform工具示例清理脚本  
+├── terraform——addgroup.sh  #terraform工具示例一键创建安全组脚本
 ```
