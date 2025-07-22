@@ -1,39 +1,55 @@
-# 背景
-安全组在容器层面是基础设施级的流量守门员，通过节点边界的粗粒度过滤，为容器环境提供基础网络隔离，本playbook旨在引导用户通过排查安全组故障，最终掌握eni模式下原生节点非直连pod的安全组核心配置逻辑
-本次操作以ingress下clb类型为例
+# 概述
+本方案通过脚本方式在tke集群内创建安全组只为用户提供安全组id和绑定位置<br>
+```
+使用本方案优点
+    ·通过脚本方式创建安全组可以更好模拟真实环境里安全组排障
+    ·通过分析curl公网ip后出现的各种问题可以更好的理解安全组的核心逻辑
+```
 # 访问pod链路
  
-# 前置条件
-已创建VPC-CNI模式集群，并创建一个可用节点且配置kubectl已配置访问权限
-集群内安装并配置好terraform或tccli任意一个工具本次以terraform为例
-安装jq命令行工具
-# 环境准备
-1:创建安全组<br>
+# 前提条件
+### 1:tke集群要求<br>
+``
+网络模式：VPC-CNI
+``<br>
+``
+kubernets版本：>=1.20
+``<br>
+``
+至少有一个可用节点
+``
+### 2:工具准备
+集群内配置好terraform/tccli(安装任意一种即可)
+# 快速开始
+### 本次以terraform工具为例
 参考文件:[terraform_addgroup.sh](https://github.com/aliantli/sg_playbook_1/blob/23e03ca41ee3d9d72063de282f02bb76477146a5/playbook/VPC-CNI%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/c)
 ```
-#创建terraform——addgroup.sh文件
-执行下列命令
+#1:创建安全组
+[root@VM-35-179-tlinux ~]# touch terraform——addgroup.sh
+[root@VM-35-179-tlinux ~]# echo '所要用的代码' > terraform——addgroup.sh
 [root@VM-35-179-tlinux ~]# sh terraform——addgroup.sh
 将此安全组绑定到节点上:
 将此安全组绑定到clb上:
 将此安全组绑定到pod(辅助)网卡上:
-```
-2:创建原生节点并绑定对应安全组到节点上
-3:服务部署
-```
-#创建addservice.sh
-执行下列命令
+#2:创建原生节点将上述对应安全组id进行绑定
+#3:创建服务并通过注解方式为clb绑定安全组
+[root@VM-35-179-tlinux ~]#touch  addservice.sh
+[root@VM-35-179-tlinux ~]#echo '所要用的代码' > addservice.sh
 [root@VM-35-179-tlinux ~]# sh addservice.sh
-
+请输入要绑定到clb上的安全组id:		#此处以	为例
+#4按照terraform——addgroup.sh脚本输出内容对pod(辅助)网卡绑定对应安全组
 ```
-4:按照上面输出绑定eni安全组
-
 到此环境已经部署好了可以开始演练了
-# 为何通过上述方式创建演练环境
-1，通过脚本方式创建安全组可以使用户不知道安全组配置内容，模拟真实环境下访问故障
-2，通过手动绑定安全组可以使用户对tke环境更为熟悉
-3，浏览器或节点curl公网ip出现不同问题后通过一步步排查更深刻理解安全组的核心逻辑
-# 问题排查方向
+# 排查演练
+```
+#执行下面命令查看ingress所生成的供外网访问的IP
+[root@VM-35-244-tlinux ~]# kubectl get service -o wide
+NAME         TYPE           CLUSTER-IP      EXTERNAL-IP      PORT(S)        AGE     SELECTOR
+kubernetes   ClusterIP      172.16.0.1      <none>           443/TCP        4h22m   <none>
+nginx        LoadBalancer   172.16.60.200   119.91.244.213   80:30713/TCP   156m    app=nginx
+#执行curl命令访问,返回200即为成功
+[root@VM-35-22-tlinux ~]# curl -I http://119.91.244.213:80
+```
 1:访问出现502
 排查方式：
 该模式下非直连pod出现502一般为clb安全组配置有问题,检查clb安全组配置，看是否放通ingress的监听端口，端口可在控制台-->集群-->服务与路由-->ingress-->更新转发配置 里查到
