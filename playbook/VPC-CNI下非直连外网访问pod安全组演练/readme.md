@@ -27,15 +27,15 @@ kubernets版本：>=1.20
 [root@VM-35-179-tlinux ~]# touch terraform——addgroup.sh
 [root@VM-35-179-tlinux ~]# echo '所要用的代码' > terraform——addgroup.sh
 [root@VM-35-179-tlinux ~]# sh terraform——addgroup.sh
-将此安全组绑定到节点上:
-将此安全组绑定到clb上:
-将此安全组绑定到pod(辅助)网卡上:
+将此安全组绑定到节点上: sg-xxxxx1
+将此安全组绑定到clb上: sg-xxxxx2
+将此安全组绑定到pod(辅助)网卡上: sg-xxxxx3
 #2:创建原生节点将上述对应安全组id进行绑定
 #3:创建服务并通过注解方式为clb绑定安全组
 [root@VM-35-179-tlinux ~]#touch  addservice.sh
 [root@VM-35-179-tlinux ~]#echo '所要用的代码' > addservice.sh
 [root@VM-35-179-tlinux ~]# sh addservice.sh
-请输入要绑定到clb上的安全组id:		#此处以	为例
+请输入要绑定到clb上的安全组id:	sg-xxxxx2	
 #4按照terraform——addgroup.sh脚本输出内容对pod(辅助)网卡绑定对应安全组
 ```
 参考文件:<br>[terraform_addgroup.sh](https://github.com/aliantli/sg_playbook_1/blob/23e03ca41ee3d9d72063de282f02bb76477146a5/playbook/VPC-CNI%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/c)<br>
