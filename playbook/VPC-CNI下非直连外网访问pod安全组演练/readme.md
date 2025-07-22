@@ -24,16 +24,18 @@ kubernets版本：>=1.20
 
 ```
 #1:创建安全组(脚本所需代码可从下列对应参考文件里获取)
-[root@VM-35-179-tlinux ~]# touch terraform——addgroup.sh
-[root@VM-35-179-tlinux ~]# echo '所要用的代码' > terraform——addgroup.sh
+[root@VM-35-179-tlinux ~]# cat <<EOF > terraform——addgroup.sh
+ --------所要用的代码--------
+EOF
 [root@VM-35-179-tlinux ~]# sh terraform——addgroup.sh
 将此安全组绑定到节点上: sg-xxxxx1
 将此安全组绑定到clb上: sg-xxxxx2
 将此安全组绑定到pod(辅助)网卡上: sg-xxxxx3
 #2:创建原生节点将上述对应安全组id进行绑定
 #3:创建服务并通过注解方式为clb绑定安全组
-[root@VM-35-179-tlinux ~]#touch  addservice.sh
-[root@VM-35-179-tlinux ~]#echo '所要用的代码' > addservice.sh
+[root@VM-35-179-tlinux ~]# cat <<EOF > addservice.sh
+-------------所要用的代码---------------
+EOF
 [root@VM-35-179-tlinux ~]# sh addservice.sh
 请输入要绑定到clb上的安全组id:	sg-xxxxx2	
 #4按照terraform——addgroup.sh脚本输出内容对pod(辅助)网卡绑定对应安全组
@@ -79,8 +81,9 @@ Connection: keep-alive
 ```
 # 资源清理
 ```
-[root@VM-35-179-tlinux ~]# touch  terraform_delete-all.sh
-[root@VM-35-179-tlinux ~]# echo '所需代码' > terraform_delete-all.sh
+[root@VM-35-179-tlinux ~]# cat <<EOF > terraform_delete-all.sh
+------所需代码--------
+EOF
 [root@VM-35-179-tlinux ~]# sh terraform_delete-all.sh
 资源清理完毕
 ```
