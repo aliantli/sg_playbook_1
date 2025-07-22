@@ -1,3 +1,4 @@
+cat <<EOF > ng-deploy-service.yaml
 # Deployment 配置
 apiVersion: apps/v1
 kind: Deployment
