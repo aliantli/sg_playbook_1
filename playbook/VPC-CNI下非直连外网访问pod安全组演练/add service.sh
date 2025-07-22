@@ -1,0 +1,44 @@
+cat <<EOF >  ng-deploy-service.yaml
+# Deployment 配置
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+        readinessProbe:  # 基础健康检查（CLB 依赖）
+          httpGet:
+            path: /
+            port: 80
+---
+# Service 配置（绑定 CLB 及安全组）
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+  annotations:
+    service.cloud.tencent.com/security-groups: 'sg-ephmfdsf'  # 绑定安全组 ID[1,6](@ref)
+spec:
+  type: LoadBalancer
+  selector:
+    app: nginx  # 匹配 Deployment 的 Pod 标签
+  ports:
+    - protocol: TCP
+      port: 80      # CLB 监听端口
+      targetPort: 80  # 容器端口
+      nodePort: 31234
+EOF
+kubectl apply -f ng-deploy-service.yaml
