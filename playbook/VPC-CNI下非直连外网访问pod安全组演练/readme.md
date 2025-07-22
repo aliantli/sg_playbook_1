@@ -48,7 +48,7 @@ EOF
 **公网ip获取**
 ```
 #执行下面命令查看ingress所生成的供外网访问的IP
-[root@VM-35-244-tlinux ~]# kubectl get service -o wide
+[root@VM-35-179-tlinux ~]# kubectl get service -o wide
 NAME         TYPE           CLUSTER-IP      EXTERNAL-IP      PORT(S)        AGE     SELECTOR
 kubernetes   ClusterIP      172.16.0.1      <none>           443/TCP        4h22m   <none>
 nginx        LoadBalancer   172.16.60.200   119.91.244.213   80:30713/TCP   156m    app=nginx
