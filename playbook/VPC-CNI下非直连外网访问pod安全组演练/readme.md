@@ -8,8 +8,8 @@
 集群内安装并配置好terraform或tccli任意一个工具本次以terraform为例
 安装jq命令行工具
 # 环境准备
-1:创建安全组
-参考文件：
+1:创建安全组<br>
+参考文件:[terraform_addgroup.sh](https://github.com/aliantli/sg_playbook_1/blob/23e03ca41ee3d9d72063de282f02bb76477146a5/playbook/VPC-CNI%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/c)
 ```
 #创建terraform——addgroup.sh文件
 执行下列命令
@@ -19,11 +19,15 @@
 将此安全组绑定到pod(辅助)网卡上:
 ```
 2:创建原生节点并绑定对应安全组到节点上
-参考链接：
 3:服务部署
-参考addservice.sh文件创建脚本并执行
-4:按照上面输出绑定eni和clb安全组
-参考《eni和clb配置安全组》文件 
+```
+#创建addservice.sh
+执行下列命令
+[root@VM-35-179-tlinux ~]# sh addservice.sh
+
+```
+4:按照上面输出绑定eni安全组
+
 到此环境已经部署好了可以开始演练了
 # 为何通过上述方式创建演练环境
 1，通过脚本方式创建安全组可以使用户不知道安全组配置内容，模拟真实环境下访问故障
