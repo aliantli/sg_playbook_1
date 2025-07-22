@@ -5,14 +5,18 @@
  
 # 前置条件
 已创建VPC-CNI模式集群，并创建一个可用节点且配置kubectl已配置访问权限
-集群内安装并配置好terraform或tccli任意一个工具
+集群内安装并配置好terraform或tccli任意一个工具本次以terraform为例
 安装jq命令行工具
 # 环境准备
 1:创建安全组
+参考文件：
 ```
-在terraform目录创建addgroup.sh并添加可执行权限
-文件内容参考addgroup.sh文件
-当输出安全组创建完成即可
+#创建terraform——addgroup.sh文件
+执行下列命令
+[root@VM-35-179-tlinux ~]# sh terraform——addgroup.sh
+将此安全组绑定到节点上:
+将此安全组绑定到clb上:
+将此安全组绑定到pod(辅助)网卡上:
 ```
 2:创建原生节点并绑定对应安全组到节点上
 参考链接：
