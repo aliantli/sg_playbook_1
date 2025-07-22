@@ -1,3 +1,4 @@
+read -p'请输入要绑定到clb上的安全组id'  sg_id
 cat <<EOF >  ng-deploy-service.yaml
 # Deployment 配置
 apiVersion: apps/v1
@@ -30,7 +31,7 @@ kind: Service
 metadata:
   name: nginx
   annotations:
-    service.cloud.tencent.com/security-groups: 'sg-ephmfdsf'  # 绑定安全组 ID[1,6](@ref)
+    service.cloud.tencent.com/security-groups: '$sg_id'  # 绑定安全组 
 spec:
   type: LoadBalancer
   selector:
