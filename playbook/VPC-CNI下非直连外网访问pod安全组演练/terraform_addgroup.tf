@@ -1,5 +1,4 @@
 ##
-cat <<EOF >  group.tf
 # 安全组1：仅允许 TCP 80 入站，出站全放通
 resource "tencentcloud_security_group" "web_sg" {
   name        = "allow-http-only"
@@ -78,17 +77,15 @@ resource "tencentcloud_security_group_rule" "allow_egress" {
 # 输出安全组 ID
 output "web_sg_id" {
   value = tencentcloud_security_group.web_sg.id
+  description  = "将此安全组绑定到eni上"
 }
 
 output "mgmt_sg_id" {
   value = tencentcloud_security_group.mgmt_sg.id
+  description  = "将此安全组绑定到clb上"
 }
 
 output "baseline_sg_id" {
   value = tencentcloud_security_group.baseline_sg.id
+  description  = "将此安全组绑定到节点上"
 }
-EOF #安全组创建
-terraform apply -auto-approve >group.txt
-cat group.txt |tail -3|head -1| awk -F'"' '{print "将此安全组绑定到eni上:"$2}'
-cat group.txt |tail -2|head -1| awk -F'"' '{print "将此安全组绑定到clb上:"$2}'
-cat group.txt |tail -1| awk -F'"' '{print "将此安全组绑定到节点上:"$2}'```
