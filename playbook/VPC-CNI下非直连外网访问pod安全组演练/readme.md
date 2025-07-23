@@ -1,19 +1,18 @@
 # 概述
-&emsp;&emsp;在VPC-CNI网络模式的TKE集群原生节点上部署非直连Pod(如Nginx服务),安全组通过脚本动态生成,用户仅需获取安全组ID及其绑定目标节点或pod标签),无需操作底层规则.此举可精准模拟真实环境的安全组策略冲突(如端口误放行、IP 段失效),并通过分析curl公网IP的典型故障(连接超时、端口拒绝),验证安全组对流量方向(入站/出站),协议控制(TCP/UDP)及优先级冲突的核心逻辑。
+&emsp;&emsp;在VPC-CNI网络模式的TKE集群原生节点上部署非直连Pod(如Nginx服务),安全组通过脚本动态生成,用户仅需获取安全组ID及其绑定目标节点或pod标签),无需操作底层规则.此举可精准模拟真实环境的安全组策略冲突(如端口误放行、IP 段失效),并通过分析curl公网IP的典型故障(连接超时、端口拒绝),验证安全组的核心逻辑
 
 # 业务访问链路
-[<img width="1110" height="112" alt="Clipboard_Screenshot_1753240236" src="https://github.com/user-attachments/assets/cfb3a1e2-77a0-4f93-b25b-2734c353acfa" />
-](https://github.com/aliantli/sg_playbook_1/blob/b20254ac7a931bcc08bcf2ab5afc51a87a643052/playbook/VPC-CNI%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/image/flow_chart.png)
+[<img width="1120" height="257" alt="Clipboard_Screenshot_1753259552" src="https://github.com/user-attachments/assets/8498cac5-6dbb-42f5-bb65-2b903eebbea0" />
+](https://github.com/aliantli/sg_playbook_1/blob/5f13a3b65f06196feabb83ce06483d146f852d77/playbook/VPC-CNI%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/image/service_flow_chart.png)
 # 前提条件
 **1:tke集群要求**
 
 &emsp;&emsp;[网络模式：VPC-CNI](https://cloud.tencent.com/document/product/457/103981)<br>
-&emsp;&emsp;·[kubernets版本：>=1.20](https://kubernetes.io/docs/tasks/tools/)<br>
-&emsp;&emsp;·至少有一个可用节点
+&emsp;&emsp;[kubernets版本：>=1.20](https://kubernetes.io/docs/tasks/tools/)<br>
 
 **2:工具准备**
 
-&emsp;&emsp;集群内配置好[terraform](https://developer.hashicorp.com/terraform)/tccli(安装任意一种即可)
+&emsp;&emsp;集群内配置好[terraform](https://developer.hashicorp.com/terraform)/[ccli](https://cloud.tencent.com/document/product/440/34012)(安装任意一种即可)
 
 # 快速开始
 ## 步骤1:环境部署
@@ -27,24 +26,23 @@
 ---------填写脚本所需代码可参考terraform——addgroup.tf文件--------
 -----------------------------------------------------------
 EOF
-[root@VM-35-179-tlinux ~]# terraform plan
-[root@VM-35-179-tlinux ~]#
+[root@VM-35-179-tlinux ~]# terraform apply -auto-approve |tail -3
 将此安全组绑定到clb上 = "sg-xxxxxxxx"    ##该安全组对clb访问节点的入站流量进行阻断出站流量放通
 将此安全组绑定到eni上 = "sg-xxxxxxxx"    ##该安全组对外网访问clb的入站流量进行阻断出站流量放通
 将此安全组绑定到节点上 = "sg-xxxxxxxx"    ##该安全组对节点到pod(辅助)网卡的入站流量进行阻断出站流量放通
 #2:创建原生节点将上述对应安全组id进行绑定
 #3:创建服务并通过注解方式为clb绑定安全组
 [root@VM-35-179-tlinux ~]# cat <<EOF > addservice.yaml
------------------------------------------------------------------------------
--填写脚本所需代码可参考addservice.yaml文件，需将上面输出对应的安全组id进行替换-------------
-------------------------------------------------------------------------------
+---------------------------------------------------------------------
+-填写脚本所需代码可参考addservice.yaml文件，需根据上面输出替换掉yaml文件里的安全组-
+---------------------------------------------------------------------
 EOF
 [root@VM-35-179-tlinux ~]# kubectl apply -f addservice.yaml
 #4按照terraform——addgroup.sh脚本输出内容对pod(辅助)网卡绑定对应安全组
 ```
-参考文件:<br>[terraform_addgroup.tf](https://github.com/aliantli/sg_playbook_1/blob/4bf57c58c5268102d1276e2b6aa683e4812e3247/playbook/VPC-CNI%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/terraform_addgroup.tf)<br>
+参考文件:<br>[terraform_addgroup.tf](https://github.com/aliantli/sg_playbook_1/blob/4bf57c58c5268102d1276e2b6aa683e4812e3247/playbook/VPC-CNI%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/terraform_addgroup.tf)&emsp;&emsp;
 [addservice.yaml](https://github.com/aliantli/sg_playbook_1/blob/de60eb196079c2188615d0b6a66b5989de0a0e1d/playbook/VPC-CNI%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/addservice.yaml)<br>
-[原生节点创建](https://cloud.tencent.com/document/product/457/78198)<br>
+[原生节点创建](https://cloud.tencent.com/document/product/457/78198)&emsp;&emsp;
 [pod(辅助)网卡安全组配置](https://cloud.tencent.com/document/product/457/50360)
 ## 步骤2:问题分析
 **公网ip获取**
@@ -93,6 +91,5 @@ VPC-CNI下非直连外网访问pod安全组演练/
 ├── readme.md       # 本文档
 ├── tccli-delet-all.sh  #tccli工具示例清理脚本
 ├── tccli_addgroup.sh  #tccli工具示例一键创建安全组脚本
-├── terraform_delete.sh     # terraform工具示例清理脚本  
 ├── terraform——addgroup.tf  #terraform工具示例一键创建安全组脚本
 ```
