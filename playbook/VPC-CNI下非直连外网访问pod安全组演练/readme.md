@@ -43,7 +43,7 @@ EOF
 请输入要绑定到clb上的安全组id:	sg-xxxxx2	
 #4按照terraform——addgroup.sh脚本输出内容对pod(辅助)网卡绑定对应安全组
 ```
-参考文件:<br>[terraform_addgroup.tf](https://github.com/aliantli/sg_playbook_1/blob/23e03ca41ee3d9d72063de282f02bb76477146a5/playbook/VPC-CNI%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/c)<br>
+参考文件:<br>[terraform_addgroup.tf](https://github.com/aliantli/sg_playbook_1/blob/4bf57c58c5268102d1276e2b6aa683e4812e3247/playbook/VPC-CNI%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/terraform_addgroup.tf)<br>
 [addservice.yaml](https://github.com/aliantli/sg_playbook_1/blob/5ac7d518e42481bf563e288e8912280c3c64c713/playbook/VPC-CNI%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/add%20service.sh)<br>
 [原生节点创建](https://cloud.tencent.com/document/product/457/78198)<br>
 [pod(辅助)网卡安全组配置](https://cloud.tencent.com/document/product/457/50360)
