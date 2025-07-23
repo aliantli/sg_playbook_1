@@ -82,8 +82,9 @@ Connection: keep-alive
 ```
 ## 步骤3:资源清理
 ```
-[root@VM-35-179-tlinux ~]#kubectl delete apply -f addservice.yaml
-[root@VM-35-179-tlinux ~]#terraform destroy -auto-approve  
+[root@VM-35-179-tlinux ~]# kubectl delete apply -f addservice.yaml
+[root@VM-35-179-tlinux ~]# terraform destroy -auto-approve
+[root@VM-35-179-tlinux ~]# rm -f terraform——addgroup.tf  addservice.yaml
 ```
 **项目结构**
 ```
