@@ -22,28 +22,29 @@
 ```
 #脚本所需代码或配置安全组出现问题可查看对应参考文件
 #1:创建安全组
-[root@VM-35-179-tlinux ~]# cat <<EOF > terraform——addgroup.sh
+[root@VM-35-179-tlinux ~]# cat <<EOF > terraform——addgroup.tf
 -----------------------------------------------------------
----------填写脚本所需代码可参考terraform——addgroup.sh文件--------
+---------填写脚本所需代码可参考terraform——addgroup.tf文件--------
 -----------------------------------------------------------
 EOF
-[root@VM-35-179-tlinux ~]# sh terraform——addgroup.sh
-将此安全组绑定到节点上: sg-xxxxx1
-将此安全组绑定到clb上: sg-xxxxx2
-将此安全组绑定到pod(辅助)网卡上: sg-xxxxx3
+[root@VM-35-179-tlinux ~]# terraform plan
+[root@VM-35-179-tlinux ~]# terraform apply
+将此安全组绑定到节点上: sg-xxxxx1      ##该安全组对clb访问节点的入站流量进行阻断出站流量放通
+将此安全组绑定到clb上: sg-xxxxx2      ##该安全组对外网访问clb的入站流量进行阻断出站流量放通
+将此安全组绑定到pod(辅助)网卡上: sg-xxxxx3    ##该安全组对节点到pod(辅助)网卡的入站流量进行阻断出站流量放通
 #2:创建原生节点将上述对应安全组id进行绑定
 #3:创建服务并通过注解方式为clb绑定安全组
-[root@VM-35-179-tlinux ~]# cat <<EOF > addservice.sh
+[root@VM-35-179-tlinux ~]# cat <<EOF > addservice.yaml
 -----------------------------------------------------------
--------------填写脚本所需代码可参考addservice.sh文件-------------
+-------------填写脚本所需代码可参考addservice.yaml文件-------------
 -----------------------------------------------------------
 EOF
-[root@VM-35-179-tlinux ~]# sh addservice.sh
+[root@VM-35-179-tlinux ~]# kubectl apply -f addservice.yaml
 请输入要绑定到clb上的安全组id:	sg-xxxxx2	
 #4按照terraform——addgroup.sh脚本输出内容对pod(辅助)网卡绑定对应安全组
 ```
-参考文件:<br>[terraform_addgroup.sh](https://github.com/aliantli/sg_playbook_1/blob/23e03ca41ee3d9d72063de282f02bb76477146a5/playbook/VPC-CNI%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/c)<br>
-[addservice.sh](https://github.com/aliantli/sg_playbook_1/blob/5ac7d518e42481bf563e288e8912280c3c64c713/playbook/VPC-CNI%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/add%20service.sh)<br>
+参考文件:<br>[terraform_addgroup.tf](https://github.com/aliantli/sg_playbook_1/blob/23e03ca41ee3d9d72063de282f02bb76477146a5/playbook/VPC-CNI%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/c)<br>
+[addservice.yaml](https://github.com/aliantli/sg_playbook_1/blob/5ac7d518e42481bf563e288e8912280c3c64c713/playbook/VPC-CNI%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/add%20service.sh)<br>
 [原生节点创建](https://cloud.tencent.com/document/product/457/78198)<br>
 [pod(辅助)网卡安全组配置](https://cloud.tencent.com/document/product/457/50360)
 ## 步骤2:问题分析
