@@ -1,9 +1,9 @@
 # 概述
-&emsp;&emsp;本方案通过脚本方式在tke集群内创建安全组,只为用户提供安全组id和对应绑定位置<br>
-**优点：**
+&emsp;&emsp;本方案中服务为VPV-CNI网络模式的tke集群下原生节点的非直连pod(nginx)服务,演练所需安全组通过脚本方式,只为用户提供安全组id和对应绑定位置<br>
+**优点**
 ```
-  通过脚本方式创建安全组可以更好模拟真实环境里安全组排障
-  通过分析curl公网ip后出现的各种问题可以更好的理解安全组的核心逻辑
+  通过自动化脚本构建安全组规则，能够精准复现真实环境中安全组配置异常的场景，使故障排查演练更贴近实际运维挑战
+  用户自己对安全组进行绑定可用更好熟悉安全组配置方式，理解安全组核心配置逻辑
 ```
 # 业务访问链路
 [<img width="1081" height="111" alt="Clipboard_Screenshot_1753238498" src="https://github.com/user-attachments/assets/0beea214-56d3-4154-998a-18968f7e40f0" />](https://github.com/aliantli/sg_playbook_1/blob/5700ea493e2b7512ef198f190e0f7cbb3e6a192b/playbook/VPC-CNI%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/image/flowchart_1.png)
