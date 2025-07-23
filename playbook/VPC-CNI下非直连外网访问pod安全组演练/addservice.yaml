@@ -1,11 +1,11 @@
-read -p'输入
+read -p'输入要绑定到clb上的安全组ID' sg_id
 cat <<EOF >service.yaml       
 apiVersion: v1
 kind: Service
 metadata:
   name: nginx
   annotations:
-    service.cloud.tencent.com/security-groups: sg-xxxxxx  ##替换成生成的对应安全组id
+    service.cloud.tencent.com/security-groups: $sd_id  ##替换成生成的对应安全组id
 spec:
   type: LoadBalancer
   selector:
