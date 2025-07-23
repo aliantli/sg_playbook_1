@@ -1,5 +1,5 @@
 # 概述
-本方案通过脚本方式在tke集群内创建安全组,只为用户提供安全组id和对应绑定位置<br>
+&emsp;&emsp;本方案通过脚本方式在tke集群内创建安全组,只为用户提供安全组id和对应绑定位置<br>
 **优点：**
 ```
   通过脚本方式创建安全组可以更好模拟真实环境里安全组排障
@@ -26,7 +26,9 @@ kubernets版本：>=1.20
 #脚本所需代码或配置安全组出现问题可查看对应参考文件
 #1:创建安全组
 [root@VM-35-179-tlinux ~]# cat <<EOF > terraform——addgroup.sh
- --------所要用的代码--------
+-----------------------------------------------------------
+---------填写脚本所需代码可参考terraform——addgroup.sh文件--------
+-----------------------------------------------------------
 EOF
 [root@VM-35-179-tlinux ~]# sh terraform——addgroup.sh
 将此安全组绑定到节点上: sg-xxxxx1
@@ -35,7 +37,9 @@ EOF
 #2:创建原生节点将上述对应安全组id进行绑定
 #3:创建服务并通过注解方式为clb绑定安全组
 [root@VM-35-179-tlinux ~]# cat <<EOF > addservice.sh
--------------所要用的代码---------------
+-----------------------------------------------------------
+-------------填写脚本所需代码可参考addservice.sh文件-------------
+-----------------------------------------------------------
 EOF
 [root@VM-35-179-tlinux ~]# sh addservice.sh
 请输入要绑定到clb上的安全组id:	sg-xxxxx2	
@@ -82,11 +86,14 @@ Connection: keep-alive
 # 资源清理
 ```
 [root@VM-35-179-tlinux ~]# cat <<EOF > terraform_delete-all.sh
-------所需代码--------
+-----------------------------------------------------------
+------填写脚本所需代码可参考terraform_delete-all.sh文件----------
+-----------------------------------------------------------
 EOF
 [root@VM-35-179-tlinux ~]# sh terraform_delete-all.sh
 资源清理完毕
 ```
+参考文件：[terraform_delete-all.sh](https://github.com/aliantli/sg_playbook_1/blob/3dd794359187c885fc89f41336fe582e96e2cd91/playbook/VPC-CNI%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/terraform-delete-all.sh<br>
 **项目结构**
 ```
 VPC-CNI下非直连外网访问pod安全组演练/  
