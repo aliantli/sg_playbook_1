@@ -5,9 +5,8 @@
   通过脚本方式创建安全组可以更好模拟真实环境里安全组排障
   通过分析curl公网ip后出现的各种问题可以更好的理解安全组的核心逻辑
 ```
-# 访问pod链路
- [<img width="4189" height="530" alt="a29df27e_16060273" src="https://github.com/user-attachments/assets/cf764160-5658-4c44-aadd-5ede1723fe96" />
-](https://github.com/aliantli/sg_playbook_1/blob/33781e5b2ca438145665f67e67d86d79019c1309/playbook/VPC-CNI%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/image/flowchart.png)
+# 业务访问链路
+[<img width="1081" height="111" alt="Clipboard_Screenshot_1753238498" src="https://github.com/user-attachments/assets/0beea214-56d3-4154-998a-18968f7e40f0" />](https://github.com/aliantli/sg_playbook_1/blob/5700ea493e2b7512ef198f190e0f7cbb3e6a192b/playbook/VPC-CNI%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/image/flowchart_1.png)
 # 前提条件
 **1:tke集群要求**
 ```
