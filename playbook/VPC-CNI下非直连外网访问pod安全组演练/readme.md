@@ -1,10 +1,11 @@
 # 概述
-&emsp;&emsp;在VPC-CNI网络模式的TKE集群原生节点上部署非直连Pod(如Nginx服务),
+&emsp;安全组作为容器基础设施层的核心流量控制组件，通过节点边界实施粗粒度访问控制，为容器环境提供基础网络隔离保障。然而，用户常因安全组规则复杂性及配置方式不当导致服务不可访问，本文针对VPC-CNI 网络模式下TKE 集群中创建的原生节点上部署的非直连 Pod 服务，利用脚本创建安全组的方式模拟真实生产环境下的网络访问异常，通过引导用户分层逐步排查访问链路,最终掌握安全组配置的核心逻辑
 
-# 业务访问链路
+
+# 访问链路
 [<img width="779" height="217" alt="Clipboard_Screenshot_1753263803" src="https://github.com/user-attachments/assets/7185b3b6-546f-4143-b290-6502d58b6299" />
 ](https://github.com/aliantli/sg_playbook_1/blob/cf55e7aa2ba8894abfd32fed717282d4f8adfe3a/playbook/VPC-CNI%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/image/floechart.png)
-安全组通过脚本动态生成,用户仅需获取安全组ID及其绑定目标节点或pod标签),无需操作底层规则.
+<br>生成环境中常常通过在clb节点,pod(辅助)网卡这三个位置是设置安全组来限制外网对本地资源的访问，这里通过脚本生成安全组并根据提示绑定到对应位置来模拟真实生产环境下的网络访问异常
 # 环境部署
 ## 前提条件
 **1:tke集群要求**
@@ -16,7 +17,7 @@ TKE版本:>=22222
 
 **2:工具准备**
 
-&emsp;&emsp;集群内配置好[terraform](https://developer.hashicorp.com/terraform)/[tccli](https://cloud.tencent.com/document/product/440/34012)(安装任意一种即可)
+集群内配置好[terraform](https://developer.hashicorp.com/terraform)/[tccli](https://cloud.tencent.com/document/product/440/34012)(安装任意一种即可)
 ## 快速开始
 
 ### 本次以terraform工具为例
