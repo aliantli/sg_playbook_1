@@ -6,7 +6,8 @@
   用户自己对安全组进行绑定可用更好熟悉安全组配置方式，理解安全组核心配置逻辑
 ```
 # 业务访问链路
-[<img width="1081" height="111" alt="Clipboard_Screenshot_1753238498" src="https://github.com/user-attachments/assets/0beea214-56d3-4154-998a-18968f7e40f0" />](https://github.com/aliantli/sg_playbook_1/blob/5700ea493e2b7512ef198f190e0f7cbb3e6a192b/playbook/VPC-CNI%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/image/flowchart_1.png)
+[<img width="1110" height="112" alt="Clipboard_Screenshot_1753240236" src="https://github.com/user-attachments/assets/cfb3a1e2-77a0-4f93-b25b-2734c353acfa" />
+](https://github.com/aliantli/sg_playbook_1/blob/b20254ac7a931bcc08bcf2ab5afc51a87a643052/playbook/VPC-CNI%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/image/flow_chart.png)
 # 前提条件
 **1:tke集群要求**
 ```
