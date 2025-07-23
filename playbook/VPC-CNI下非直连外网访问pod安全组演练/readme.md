@@ -84,6 +84,7 @@ Connection: keep-alive
 ```
 # 资源清理
 ```
+#脚本所需代码可查看下列参考文件
 [root@VM-35-179-tlinux ~]# cat <<EOF > terraform_delete-all.sh
 -----------------------------------------------------------
 ------填写脚本所需代码可参考terraform_delete-all.sh文件----------
@@ -92,7 +93,7 @@ EOF
 [root@VM-35-179-tlinux ~]# sh terraform_delete-all.sh
 资源清理完毕
 ```
-参考文件：[terraform_delete-all.sh](https://github.com/aliantli/sg_playbook_1/blob/3dd794359187c885fc89f41336fe582e96e2cd91/playbook/VPC-CNI%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/terraform-delete-all.sh<br>
+参考文件：[terraform_delete-all.sh](https://github.com/aliantli/sg_playbook_1/blob/3dd794359187c885fc89f41336fe582e96e2cd91/playbook/VPC-CNI%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/terraform-delete-all.sh)<br>
 **项目结构**
 ```
 VPC-CNI下非直连外网访问pod安全组演练/  
