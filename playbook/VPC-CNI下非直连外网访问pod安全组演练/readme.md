@@ -12,7 +12,7 @@
 
 **2:工具准备**
 
-&emsp;&emsp;集群内配置好[terraform](https://developer.hashicorp.com/terraform)/[ccli](https://cloud.tencent.com/document/product/440/34012)(安装任意一种即可)
+&emsp;&emsp;集群内配置好[terraform](https://developer.hashicorp.com/terraform)/[tccli](https://cloud.tencent.com/document/product/440/34012)(安装任意一种即可)
 
 # 快速开始
 ## 步骤1:环境部署
