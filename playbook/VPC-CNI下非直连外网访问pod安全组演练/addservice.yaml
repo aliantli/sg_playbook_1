@@ -1,4 +1,5 @@
-# Service 配置（绑定 CLB 及安全组）
+read -p'输入
+cat <<EOF >service.yaml       
 apiVersion: v1
 kind: Service
 metadata:
@@ -14,3 +15,4 @@ spec:
       port: 80      # CLB 监听端口
       targetPort: 80  # 容器端口
       nodePort: 31234
+EOF
