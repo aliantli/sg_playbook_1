@@ -83,10 +83,8 @@ Connection: keep-alive
 ```
 ## 步骤3:资源清理
 ```
-[root@VM-35-179-tlinux ~]#echo '' > group.tf
-[root@VM-35-179-tlinux ~]#terraform plan
-[root@VM-35-179-tlinux ~]#terraform apply
 [root@VM-35-179-tlinux ~]#kubectl delete apply -f ng-deploy-service.yaml
+[root@VM-35-179-tlinux ~]#terraform destroy -auto-approve  
 ```
 **项目结构**
 ```
