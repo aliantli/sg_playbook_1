@@ -75,17 +75,15 @@ resource "tencentcloud_security_group_rule" "allow_egress" {
 }
 
 # 输出安全组 ID
-output "web_sg_id" {
+# 输出安全组 ID
+output "将此安全组绑定到eni上" {
   value = tencentcloud_security_group.web_sg.id
-  description  = "将此安全组绑定到eni上"
 }
 
-output "mgmt_sg_id" {
+output "将此安全组绑定到clb上" {
   value = tencentcloud_security_group.mgmt_sg.id
-  description  = "将此安全组绑定到clb上"
 }
 
-output "baseline_sg_id" {
-  value = tencentcloud_security_group.baseline_sg.id
-  description  = "将此安全组绑定到节点上"
+output "将此安全组绑定到节点上" {
+  value = tencentcloud_security_group.baseline_sg.id 
 }
