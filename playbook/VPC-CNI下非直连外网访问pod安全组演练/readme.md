@@ -7,13 +7,13 @@
 # 前提条件
 **1:tke集群要求**
 
-&emsp;&emsp;网络模式：VPC-CNI<br>
-&emsp;&emsp;kubernets版本：>=1.20<br>
-&emsp;&emsp;至少有一个可用节点
+&emsp;&emsp;1️⃣[网络模式：VPC-CNI](https://cloud.tencent.com/document/product/457/103981)<br>
+&emsp;&emsp;2️⃣[kubernets版本：>=1.20](https://kubernetes.io/docs/tasks/tools/)<br>
+&emsp;&emsp;3️⃣至少有一个可用节点
 
 **2:工具准备**
 
-&emsp;&emsp;集群内配置好terraform/tccli(安装任意一种即可)
+&emsp;&emsp;集群内配置好[terraform](https://developer.hashicorp.com/terraform)/tccli(安装任意一种即可)
 
 # 快速开始
 ## 步骤1:环境部署
@@ -44,7 +44,7 @@ EOF
 #4按照terraform——addgroup.sh脚本输出内容对pod(辅助)网卡绑定对应安全组
 ```
 参考文件:<br>[terraform_addgroup.tf](https://github.com/aliantli/sg_playbook_1/blob/4bf57c58c5268102d1276e2b6aa683e4812e3247/playbook/VPC-CNI%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/terraform_addgroup.tf)<br>
-[addservice.yaml](https://github.com/aliantli/sg_playbook_1/blob/5ac7d518e42481bf563e288e8912280c3c64c713/playbook/VPC-CNI%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/add%20service.sh)<br>
+[addservice.yaml](https://github.com/aliantli/sg_playbook_1/blob/de60eb196079c2188615d0b6a66b5989de0a0e1d/playbook/VPC-CNI%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/addservice.yaml)<br>
 [原生节点创建](https://cloud.tencent.com/document/product/457/78198)<br>
 [pod(辅助)网卡安全组配置](https://cloud.tencent.com/document/product/457/50360)
 ## 步骤2:问题分析
