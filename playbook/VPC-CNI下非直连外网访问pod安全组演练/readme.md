@@ -1,25 +1,22 @@
 # 概述
-&emsp;&emsp;本方案中服务为VPV-CNI网络模式的tke集群下原生节点的非直连pod(nginx)服务,演练所需安全组通过脚本方式,只为用户提供安全组id和对应绑定位置<br>
-**优点**
-```
-  通过自动化脚本构建安全组规则，能够精准复现真实环境中安全组配置异常的场景，使故障排查演练更贴近实际运维挑战
-  用户自己对安全组进行绑定可用更好熟悉安全组配置方式，理解安全组核心配置逻辑
-```
+&emsp;&emsp;在VPC-CNI网络模式的TKE集群原生节点上部署非直连Pod(如Nginx服务),安全组通过脚本动态生成,用户仅需获取安全组ID及其绑定目标节点或pod标签),无需操作底层规则.此举可精准模拟真实环境的安全组策略冲突(如端口误放行、IP 段失效),并通过分析curl公网IP的典型故障(连接超时、端口拒绝),验证安全组对流量方向(入站/出站),协议控制(TCP/UDP)及优先级冲突的核心逻辑。
+
 # 业务访问链路
 [<img width="1110" height="112" alt="Clipboard_Screenshot_1753240236" src="https://github.com/user-attachments/assets/cfb3a1e2-77a0-4f93-b25b-2734c353acfa" />
 ](https://github.com/aliantli/sg_playbook_1/blob/b20254ac7a931bcc08bcf2ab5afc51a87a643052/playbook/VPC-CNI%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/image/flow_chart.png)
 # 前提条件
 **1:tke集群要求**
-```
-网络模式：VPC-CNI
-kubernets版本：>=1.20
-至少有一个可用节点
-```
+
+&emsp;&emsp;网络模式：VPC-CNI<br>
+&emsp;&emsp;kubernets版本：>=1.20<br>
+&emsp;&emsp;至少有一个可用节点
+
 **2:工具准备**
-```
-集群内配置好terraform/tccli(安装任意一种即可)
-```
+
+&emsp;&emsp;集群内配置好terraform/tccli(安装任意一种即可)
+
 # 快速开始
+## 步骤1:环境部署
 ### 本次以terraform工具为例
 
 ```
@@ -49,7 +46,7 @@ EOF
 [addservice.sh](https://github.com/aliantli/sg_playbook_1/blob/5ac7d518e42481bf563e288e8912280c3c64c713/playbook/VPC-CNI%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/add%20service.sh)<br>
 [原生节点创建](https://cloud.tencent.com/document/product/457/78198)<br>
 [pod(辅助)网卡安全组配置](https://cloud.tencent.com/document/product/457/50360)
-# 排查演练
+## 步骤2:问题分析
 **公网ip获取**
 ```
 #执行下面命令查看ingress所生成的供外网访问的IP
@@ -83,7 +80,7 @@ Connection: keep-alive
 1:pod(辅助)网卡层面：前往pod(辅助)网卡所绑定的安全组，查看其是否放通pod服务端口，如果未放通放通即可
 2:节点层面：前往节点所绑定的安全组，查看其是否放通service所绑定的主机端口，如果未放通放通即可
 ```
-# 资源清理
+## 步骤3:资源清理
 ```
 #脚本所需代码可查看下列参考文件
 [root@VM-35-179-tlinux ~]# cat <<EOF > terraform_delete-all.sh
