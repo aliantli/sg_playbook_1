@@ -3,6 +3,9 @@
 resource "tencentcloud_security_group" "web_sg" {
   name        = "allow-http-only"
   description = "仅允许 TCP 80 入站，出站全放通"
+  tags = {
+    key = "values"     ##配置标签
+  }
 }
 
 resource "tencentcloud_security_group_rule" "web_ingress" {
@@ -28,6 +31,9 @@ resource "tencentcloud_security_group_rule" "web_egress" {
 resource "tencentcloud_security_group" "mgmt_sg" {
   name        = "allow-ssh-only"
   description = "仅允许 SSH 22 入站，出站全放通"
+  tags = {
+    key = "values"  #配置标签
+  }
 }
 
 resource "tencentcloud_security_group_rule" "ssh_ingress" {
@@ -53,6 +59,9 @@ resource "tencentcloud_security_group_rule" "ssh_egress" {
 resource "tencentcloud_security_group" "baseline_sg" {
   name        = "deny-all-inbound"
   description = "拒绝所有入站，出站全放通"
+  tags = {
+    key ="values"
+  }
 }
 
 # 显式拒绝所有入站（默认拒绝，此规则可省略但明确声明更清晰）
