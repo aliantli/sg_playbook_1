@@ -1,6 +1,5 @@
 ##addgroup.sh 
-read  -p'请输入你要创建安全组的标签key值' key
-read  -p'请输入你要创建安全组标签的value值' value
+
 echo "开始创建安全组"
 group1=`tccli vpc CreateSecurityGroup --cli-unfold-argument   --GroupName TestGroup      --GroupDescription test-group-desc  --Tags.0.Value $value   --Tags.0.Key  $key  | jq -r '.SecurityGroup.SecurityGroupId' `
 echo "绑定到节点安全组"
