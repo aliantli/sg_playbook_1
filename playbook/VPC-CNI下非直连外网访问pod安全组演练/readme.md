@@ -35,6 +35,7 @@ TKE版本:>=1.20.6
 3:创建服务并通过注解方式为clb绑定安全组
 ```
 [root@VM-35-179-tlinux ~]# kubectl apply -f deployment.yaml
+[root@VM-35-179-tlinux ~]# sed -i 's/sg-id/sg-xxxxxx/g' service.yaml。  #sg-xxxxxx为脚本生成的需要绑定到clb上的安全组id
 [root@VM-35-179-tlinux ~]# kubectl apply -f service.yaml
 ```
 4按照terraform——addgroup.sh脚本输出内容对pod(辅助)网卡绑定对应安全组
@@ -79,7 +80,7 @@ Connection: keep-alive
 [root@VM-35-179-tlinux ~]# terraform destroy -auto-approve
 [root@VM-35-179-tlinux ~]# rm -f terraform——addgroup.tf  addservice.yaml
 ```
-**项目结构**
+# 项目结构
 ```
 VPC-CNI下非直连外网访问pod安全组演练/  
 ├── addservice.yaml      # 一键部署服务并为clb绑定安全组 
