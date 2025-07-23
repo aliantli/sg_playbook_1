@@ -61,7 +61,7 @@ nginx        LoadBalancer   172.16.60.200   119.91.244.213   80:30713/TCP   156m
 [root@VM-35-179-tlinux ~]# curl -I http://119.91.244.213
 curl: (7) Failed to connect to 119.91.244.213 port 80: Connection timed out
 ```
-**问题分析**
+**简要分析**
 ```
 clb层面:出现这种情况一般为clb安全组配置问题，查看clb绑定的安全组，查看其是否放通http/https的监听端口
 ```
@@ -75,7 +75,7 @@ Content-Type: text/html
 Content-Length: 159
 Connection: keep-alive
 ```
-**问题分析**
+**简要分析**
 ```
 出现这种现象一般分为以下两种情况
 1:pod(辅助)网卡层面：前往pod(辅助)网卡所绑定的安全组，查看其是否放通pod服务端口，如果未放通放通即可
