@@ -2,49 +2,44 @@
 &emsp;&emsp;在VPC-CNI网络模式的TKE集群原生节点上部署非直连Pod(如Nginx服务),安全组通过脚本动态生成,用户仅需获取安全组ID及其绑定目标节点或pod标签),无需操作底层规则.此举可精准模拟真实环境的安全组策略冲突(如端口误放行、IP 段失效),并通过分析curl公网IP的典型故障(连接超时、端口拒绝),验证安全组的核心逻辑
 
 # 业务访问链路
-[<img width="1120" height="257" alt="Clipboard_Screenshot_1753259552" src="https://github.com/user-attachments/assets/8498cac5-6dbb-42f5-bb65-2b903eebbea0" />
-](https://github.com/aliantli/sg_playbook_1/blob/5f13a3b65f06196feabb83ce06483d146f852d77/playbook/VPC-CNI%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/image/service_flow_chart.png)
-# 前提条件
+[<img width="779" height="217" alt="Clipboard_Screenshot_1753263803" src="https://github.com/user-attachments/assets/7185b3b6-546f-4143-b290-6502d58b6299" />
+](https://github.com/aliantli/sg_playbook_1/blob/cf55e7aa2ba8894abfd32fed717282d4f8adfe3a/playbook/VPC-CNI%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/image/floechart.png)
+
+# 环境部署
+## 前提条件
 **1:tke集群要求**
 
-&emsp;&emsp;[网络模式：VPC-CNI](https://cloud.tencent.com/document/product/457/103981)<br>
-&emsp;&emsp;[kubernets版本：>=1.20](https://kubernetes.io/docs/tasks/tools/)<br>
+TKE版本：
+<br>可参考https://cloud.tencent.com/document/product/457/103981<br>
+&emsp;&emsp;网络模式：VPC-CNI<br>
+https://kubernetes.io/docs/tasks/tools/
 
 **2:工具准备**
 
 &emsp;&emsp;集群内配置好[terraform](https://developer.hashicorp.com/terraform)/[tccli](https://cloud.tencent.com/document/product/440/34012)(安装任意一种即可)
+## 快速开始
 
-# 快速开始
-## 步骤1:环境部署
 ### 本次以terraform工具为例
-
+1:创建安全组
 ```
 #脚本所需代码或配置安全组出现问题可查看对应参考文件
-#1:创建安全组
-[root@VM-35-179-tlinux ~]# cat <<EOF > terraform——addgroup.tf
------------------------------------------------------------
----------填写脚本所需代码可参考terraform——addgroup.tf文件--------
------------------------------------------------------------
-EOF
 [root@VM-35-179-tlinux ~]# terraform apply -auto-approve |tail -3
 将此安全组绑定到clb上 = "sg-xxxxxxxx"    ##该安全组对clb访问节点的入站流量进行阻断出站流量放通
 将此安全组绑定到eni上 = "sg-xxxxxxxx"    ##该安全组对外网访问clb的入站流量进行阻断出站流量放通
 将此安全组绑定到节点上 = "sg-xxxxxxxx"    ##该安全组对节点到pod(辅助)网卡的入站流量进行阻断出站流量放通
-#2:创建原生节点将上述对应安全组id进行绑定
-#3:创建服务并通过注解方式为clb绑定安全组
-[root@VM-35-179-tlinux ~]# cat <<EOF > addservice.yaml
----------------------------------------------------------------------
--填写脚本所需代码可参考addservice.yaml文件，需根据上面输出替换掉yaml文件里的安全组-
----------------------------------------------------------------------
-EOF
-[root@VM-35-179-tlinux ~]# kubectl apply -f addservice.yaml
-#4按照terraform——addgroup.sh脚本输出内容对pod(辅助)网卡绑定对应安全组
 ```
-参考文件:<br>[terraform_addgroup.tf](https://github.com/aliantli/sg_playbook_1/blob/4bf57c58c5268102d1276e2b6aa683e4812e3247/playbook/VPC-CNI%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/terraform_addgroup.tf)&emsp;&emsp;
-[addservice.yaml](https://github.com/aliantli/sg_playbook_1/blob/de60eb196079c2188615d0b6a66b5989de0a0e1d/playbook/VPC-CNI%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/addservice.yaml)<br>
-[原生节点创建](https://cloud.tencent.com/document/product/457/78198)&emsp;&emsp;
-[pod(辅助)网卡安全组配置](https://cloud.tencent.com/document/product/457/50360)
-## 步骤2:问题分析
+参考文件:[terraform_addgroup.tf](https://github.com/aliantli/sg_playbook_1/blob/4bf57c58c5268102d1276e2b6aa683e4812e3247/playbook/VPC-CNI%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/terraform_addgroup.tf)<br>
+2:创建原生节点将上述对应安全组id进行绑定
+<br>参考文件:[原生节点创建](https://cloud.tencent.com/document/product/457/78198)<br>
+3:创建服务并通过注解方式为clb绑定安全组
+```
+[root@VM-35-179-tlinux ~]# kubectl apply -f deployment.yaml
+[root@VM-35-179-tlinux ~]# kubectl apply -f service.yaml
+```
+参考文件:[addservice.yaml](https://github.com/aliantli/sg_playbook_1/blob/de60eb196079c2188615d0b6a66b5989de0a0e1d/playbook/VPC-CNI%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/addservice.yaml)<br>
+4按照terraform——addgroup.sh脚本输出内容对pod(辅助)网卡绑定对应安全组
+<br>参考文件:[pod(辅助)网卡安全组配置](https://cloud.tencent.com/document/product/457/50360)
+## 问题分析
 **公网ip获取**
 ```
 #执行下面命令查看ingress所生成的供外网访问的IP
