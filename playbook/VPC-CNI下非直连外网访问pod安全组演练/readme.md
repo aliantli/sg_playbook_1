@@ -10,7 +10,7 @@
 ## 前提条件
 **1:tke集群要求**
 
-TKE版本:>=22222
+TKE版本:>=1.20.6
 <br>可参考:https://cloud.tencent.com/document/product/457/103981<br>
 网络模式:VPC-CNI<br>
 可参考:https://cloud.tencent.com/document/product/457/50355
