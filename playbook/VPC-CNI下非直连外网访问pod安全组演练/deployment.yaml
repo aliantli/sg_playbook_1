@@ -2,23 +2,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
+  name: my-deployment
 spec:
-  replicas: 2
+  replicas: 1  # 支持多副本
   selector:
     matchLabels:
-      app: nginx
+      app: my-app
   template:
     metadata:
       labels:
-        app: nginx
+        app: my-app
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:  # 硬性约束
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/hostname  # 节点名称标签
+                operator: In
+                values: [node_name]  # 绑定到 node
       containers:
       - name: nginx
         image: nginx:latest
         ports:
         - containerPort: 80
-        readinessProbe:  
-          httpGet:
-            path: /
-            port: 80
