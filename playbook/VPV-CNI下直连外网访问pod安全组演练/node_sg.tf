@@ -1,3 +1,4 @@
+#确保所有标签内容一致
 # 安全组1：仅允许 TCP 22 入站，出站全放通
 resource "tencentcloud_security_group" "mgmt_sg" {
   name        = "allow-ssh-only"
