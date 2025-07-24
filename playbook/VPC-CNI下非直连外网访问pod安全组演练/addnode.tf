@@ -1,3 +1,66 @@
+# 安全组1：仅允许 TCP 22 入站，出站全放通
+resource "tencentcloud_security_group" "mgmt_sg" {
+  name        = "allow-ssh-only"
+  description = "仅允许 SSH 22 入站，出站全放通"
+  tags = {
+    key = "values"  #配置标签
+  }
+}
+
+resource "tencentcloud_security_group_rule" "ssh_ingress" {
+  security_group_id = tencentcloud_security_group.mgmt_sg.id
+  type              = "ingress"
+  cidr_ip           = "0.0.0.0/0"
+  ip_protocol       = "tcp"
+  port_range        = "22"    # 开放 SSH 端口
+  policy            = "ACCEPT"
+  description       = "允许 SSH 入站"
+}
+
+resource "tencentcloud_security_group_rule" "ssh_egress" {
+  security_group_id = tencentcloud_security_group.mgmt_sg.id
+  type              = "egress"
+  cidr_ip           = "0.0.0.0/0"
+  ip_protocol       = "ALL"
+  policy            = "ACCEPT"
+  description       = "允许所有出站流量"
+}
+
+# 安全组2：拒绝所有入站，出站全放通
+resource "tencentcloud_security_group" "baseline_sg" {
+  name        = "deny-all-inbound"
+  description = "拒绝所有入站，出站全放通"
+  tags = {
+    key ="values"
+  }
+}
+
+# 显式拒绝所有入站（默认拒绝，此规则可省略但明确声明更清晰）
+resource "tencentcloud_security_group_rule" "deny_ingress" {
+  security_group_id = tencentcloud_security_group.baseline_sg.id
+  type              = "ingress"
+  cidr_ip           = "0.0.0.0/0"
+  ip_protocol       = "ALL"
+  policy            = "DROP"     # 丢弃所有入站
+  description       = "拒绝所有入站流量"
+}
+
+resource "tencentcloud_security_group_rule" "allow_egress" {
+  security_group_id = tencentcloud_security_group.baseline_sg.id
+  type              = "egress"
+  cidr_ip           = "0.0.0.0/0"
+  ip_protocol       = "ALL"
+  policy            = "ACCEPT"   # 允许所有出站
+  description       = "允许所有出站流量"
+}
+
+# 输出安全组 ID
+# 输出安全组 ID
+
+output "将此安全组绑定到clb上" {
+  value = tencentcloud_security_group.mgmt_sg.id
+}
+
 ##注解部分为主要配置
 resource "tencentcloud_kubernetes_native_node_pool" "native_nodepool_cvm" {
   name                = "native"
@@ -12,7 +75,7 @@ resource "tencentcloud_kubernetes_native_node_pool" "native_nodepool_cvm" {
   native {
     instance_charge_type     = "POSTPAID_BY_HOUR"    ##按量计费，其他计费模式可能会导致创建节点时卡在第一步
     instance_types           = ["SA2.MEDIUM2"]    ##机器类型
-    security_group_ids       = ["sg-m2bb6vu3"]    ##安全组id
+    security_group_ids       = [tencentcloud_security_group.baseline_sg.id]    ##安全组id
     subnet_ids               = ["subnet-mw0fqo42"]    ##子网id
     auto_repair              = true
     health_check_policy_name = null
