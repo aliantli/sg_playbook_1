@@ -33,9 +33,10 @@ TKE版本:>=1.20.6
 ```
 [root@VM-35-179-tlinux ~]#a=`cat node_name.txt`
 [root@VM-35-179-tlinux ~]#b=kubectl get nodes -o wide|awk  '{print $1}'|grep -v 'NAME'|grep $a
-[root@VM-35-179-tlinux ~]#sed -i 's/name/$b/g' pod.yaml
-
-[root@VM-35-179-tlinux ~]#sed -i 's/sg-id/sg-xxxxxx/g' service.yaml
+[root@VM-35-179-tlinux ~]#sed -i 's/node_name/$b/g' deployment.yaml
+[root@VM-35-179-tlinux ~]#kubectl apply -f seployment.yaml
+[root@VM-35-179-tlinux ~]#c=过滤出sgid
+[root@VM-35-179-tlinux ~]#sed -i 's/sg-id/$c/g' service.yaml
 [root@VM-35-179-tlinux ~]# kubectl apply -f service.yaml
 ```
 
