@@ -71,6 +71,7 @@ sg-97v29isn             ##输出的为pod(辅助)网卡所绑定的安全组id
 # 资源清理
 ```
 [root@VM-35-179-tlinux ~]# kubectl delete apply -f addservice.yaml
+[root@VM-35-179-tlinux ~]# kubectl delete apply -f deployment.yaml
 [root@VM-35-179-tlinux ~]# terraform destroy -auto-approve
 ```
 # 项目结构
