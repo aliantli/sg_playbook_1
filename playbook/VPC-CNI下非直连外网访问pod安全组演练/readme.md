@@ -21,25 +21,24 @@ TKE版本:>=1.20.6
 ## 快速开始
 
 ### 本次以terraform工具为例
-1:创建安全组
+1:获取本节点
 ```
-#脚本所需代码或配置安全组出现问题可查看对应参考文件
-[root@VM-35-179-tlinux ~]# terraform apply -auto-approve |tail -3
-将此安全组绑定到clb上 = "sg-xxxxxxxx"    ##该安全组对clb访问节点的入站和出站流量进行控制
-将此安全组绑定到eni上 = "sg-xxxxxxxx"    ##该安全组对外网访问clb的入站和出站流量进行控制
-将此安全组绑定到节点上 = "sg-xxxxxxxx"    ##该安全组对节点到pod(辅助)网卡的入站和出站流量进行控制
+[root@VM-35-179-tlinux ~]#kubectl get nodes -o wide|awk  '{print $1}'|grep -v 'NAME' > node_name.txt
 ```
+2:创建节点和安全组并为节点绑定安全组
+```
+[root@VM-35-179-tlinux ~]# terraform apply -auto-approve|tail -1 > sg_id.txt
+```
+3:服务部署
+```
+[root@VM-35-179-tlinux ~]#a=`cat node_name.txt`
+[root@VM-35-179-tlinux ~]#b=kubectl get nodes -o wide|awk  '{print $1}'|grep -v 'NAME'|grep $a
+[root@VM-35-179-tlinux ~]#sed -i 's/name/$b/g' pod.yaml
 
-2:创建原生节点将上述对应安全组id进行绑定
-<br>参考链接:https://cloud.tencent.com/document/product/457/78198<br>
-3:创建服务并通过注解方式为clb绑定安全组
-```
-[root@VM-35-179-tlinux ~]# kubectl apply -f deployment.yaml
-[root@VM-35-179-tlinux ~]# sed -i 's/sg-id/sg-xxxxxx/g' service.yaml。  #sg-xxxxxx为脚本生成的需要绑定到clb上的安全组id
+[root@VM-35-179-tlinux ~]#sed -i 's/sg-id/sg-xxxxxx/g' service.yaml
 [root@VM-35-179-tlinux ~]# kubectl apply -f service.yaml
 ```
-4按照terraform——addgroup.sh脚本输出内容对pod(辅助)网卡绑定对应安全组
-<br>参考链接:https://cloud.tencent.com/document/product/457/50360
+
 # 问题分析
 **获取公网ip**
 ```
@@ -70,9 +69,20 @@ Connection: keep-alive
 ```
 **简要分析**
 ```
-出现这种现象一般分为以下两种情况
-1:pod(辅助)网卡层面：前往pod(辅助)网卡所绑定的安全组，查看其是否放通pod服务端口，如果未放通放通即可
-2:节点层面：前往节点所绑定的安全组，查看其是否放通service所绑定的主机端口，如果未放通放通即可
+节点层面：出现这种情况一般为节点安全组配置问题，前往节点所绑定的安全组，查看其是否放通service所绑定的主机端口，如果未放通放通即可
+```
+**放通节点和clb层安全组后出现一下现象**
+```
+[root@VM-35-179-tlinux ~]# curl -I http://119.91.244.213
+HTTP/1.1 504 Gateway Time-out
+Server: stgw
+Date: Tue, 22 Jul 2025 12:41:43 GMT
+Content-Type: text/html
+Content-Length: 159
+Connection: keep-alive
+```
+**简要分析**
+```
 ```
 # 资源清理
 ```
