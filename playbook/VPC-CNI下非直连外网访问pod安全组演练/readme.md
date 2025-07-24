@@ -5,7 +5,7 @@
 # 访问链路
 [<img width="779" height="217" alt="Clipboard_Screenshot_1753263803" src="https://github.com/user-attachments/assets/7185b3b6-546f-4143-b290-6502d58b6299" />
 ](https://github.com/aliantli/sg_playbook_1/blob/cf55e7aa2ba8894abfd32fed717282d4f8adfe3a/playbook/VPC-CNI%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/image/floechart.png)
-<br>生成环境中常常通过在clb节点,pod(辅助)网卡这三个位置是设置安全组来限制外网对本地资源的访问，这里通过脚本生成安全组并根据提示绑定到对应位置来模拟真实生产环境下的网络访问异常
+<br>生成环境中常常通过在上述三个位置是设置安全组来限制外网流量出入，安全组3处通过默认关闭
 # 环境部署
 ## 前提条件
 **1:tke集群要求**
@@ -84,6 +84,10 @@ Connection: keep-alive
 ```
 **简要分析**
 ```
+##出现这种情况可能为pod(辅助)网卡安全组被开启且安全组配置不正确
+[root@VM-35-179-tlinux ~]#                 ##查看pod(辅助)网卡安全组是否开启
+[root@VM-35-179-tlinux ~]#                 ##查询其所绑定的安全组
+##查看其绑定的安全组是否放通pod服务端口如果未放通放通即可
 ```
 # 资源清理
 ```
