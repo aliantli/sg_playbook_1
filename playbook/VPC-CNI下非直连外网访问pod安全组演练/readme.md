@@ -3,9 +3,9 @@
 
 
 # 访问链路
-[<img width="779" height="217" alt="Clipboard_Screenshot_1753263803" src="https://github.com/user-attachments/assets/7185b3b6-546f-4143-b290-6502d58b6299" />
-](https://github.com/aliantli/sg_playbook_1/blob/cf55e7aa2ba8894abfd32fed717282d4f8adfe3a/playbook/VPC-CNI%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/image/floechart.png)
-<br>生成环境中常常通过在上述三个位置是设置安全组来限制外网流量出入，安全组3处通过默认关闭
+[<img width="929" height="220" alt="Clipboard_Screenshot_1753353506" src="https://github.com/user-attachments/assets/50b64512-e76f-4f4f-9174-adac68714031" />
+](https://github.com/aliantli/sg_playbook_1/blob/f5b921b874729aa0ed684486e7a746d45ffb5d23/playbook/VPC-CNI%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/image/service_flowchart.png)
+<br>在日常生产环境中常常通过在上述三个位置是设置安全组来限制外网流量出入，pod(辅助)网卡处的安全组默认关闭可根据自己需求开启
 # 环境部署
 ## 前提条件
 **1:tke集群要求**
