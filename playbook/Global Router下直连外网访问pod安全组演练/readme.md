@@ -26,7 +26,7 @@ TKE版本:>=1.20.6
 ```
 2:创建节点和安全组并为节点绑定安全组
 ```
-[root@VM-35-179-tlinux ~]# terraform apply -auto-approve|tail -1 > sg_id.txt
+[root@VM-35-179-tlinux ~]# terraform apply -auto-approve|tail -1 > sg_id.txt    ####根据node_sg.tf文件注解更改配置
 ```
 3:服务部署
 ```
