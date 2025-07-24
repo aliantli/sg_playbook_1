@@ -3,7 +3,9 @@ kind: Service
 metadata:
   name: nginx
   annotations:
-    service.cloud.tencent.com/direct-access: 'true'    ##开启直连
+    annotations:
+    service.cloud.tencent.com/direct-access: "true"  # 关键注解：启用直连
+    service.cloud.tencent.com/loadbalance-type: "OPEN"  # 公网CLB
     service.cloud.tencent.com/security-groups: sg-id  ##替换成生成的对应安全组id
 spec:
   type: LoadBalancer
@@ -14,3 +16,5 @@ spec:
       port: 80      # CLB 监听端口
       targetPort: 80  # 容器端口
       nodePort: 31234
+
+
