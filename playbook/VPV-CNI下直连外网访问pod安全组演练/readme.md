@@ -59,13 +59,7 @@ clb层面:出现这种情况一般为clb安全组配置问题，查看clb绑定�
 
 **放通clb层安全组后出现以下现象**
 ```
-[root@VM-35-179-tlinux ~]# curl -I http://119.91.244.213
-HTTP/1.1 504 Gateway Time-out
-Server: stgw
-Date: Tue, 22 Jul 2025 12:41:43 GMT
-Content-Type: text/html
-Content-Length: 159
-Connection: keep-alive
+e
 ```
 **简要分析**
 ```
