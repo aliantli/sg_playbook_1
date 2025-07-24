@@ -17,7 +17,7 @@ TKE版本:>=1.20.6
 
 **2:工具准备**
 
-集群内配置好[terraform](https://developer.hashicorp.com/terraform)/[tccli](https://cloud.tencent.com/document/product/440/34012)(安装任意一种即可)
+集群内配置好[terraform](https://developer.hashicorp.com/terraform)
 ## 快速开始
 
 ### 本次以terraform工具为例
