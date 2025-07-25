@@ -61,7 +61,7 @@ curl: (7) Failed to connect to 119.91.244.213 port 80: Connection timed out
 
 # 演练环境清理
 ```
-[root@VM-35-179-tlinux ~]# kubectl delete apply -f addservice.yaml
+[root@VM-35-179-tlinux ~]# kubectl delete apply -f service.yaml
 [root@VM-35-179-tlinux ~]# kubectl delete apply -f deployment.yaml
 [root@VM-35-179-tlinux ~]# terraform destroy -auto-approve
 ```
