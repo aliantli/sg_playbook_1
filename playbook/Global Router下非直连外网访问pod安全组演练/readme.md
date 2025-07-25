@@ -18,7 +18,7 @@ TKE版本:>=1.20.6
 
 **2:工具准备**
 
-集群内配置好[terraform](https://developer.hashicorp.com/terraform)
+集群内配置好[terraform:v1.8.2](https://developer.hashicorp.com/terraform)
 ## 快速开始
 
 ### 本次以terraform工具为例
