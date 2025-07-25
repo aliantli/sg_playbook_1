@@ -35,16 +35,16 @@ kubernetes   ClusterIP      172.16.0.1      <none>           443/TCP        4h22
 nginx        LoadBalancer   172.16.60.200   119.91.244.213   80:30713/TCP   156m    app=nginx
 ```
 ## 第二步:问题分析
-**若访问时出现以下现象**
+**若访问时出现以下现象:**
 ```
 [root@VM-35-179-tlinux ~]# curl -I http://119.91.244.213
 curl: (7) Failed to connect to 119.91.244.213 port 80: Connection timed out
 ```
-**排查方向**
+**排查方向:**
 ```
 clb层面:出现这种情况一般为clb安全组配置问题，查看clb绑定的安全组，查看其是否放通http/https的监听端口
 ```
-**若访问时出现以下现象**
+**若访问时出现以下现象:**
 ```
 [root@VM-35-179-tlinux ~]# curl -I http://119.91.244.213
 HTTP/1.1 504 Gateway Time-out
@@ -54,11 +54,11 @@ Content-Type: text/html
 Content-Length: 159
 Connection: keep-alive
 ```
-**排查方向**
+**排查方向:**
 ```
 节点层面：出现这种情况一般为节点安全组配置问题，前往节点所绑定的安全组，查看其是否放通service所绑定的主机端口，如果未放通放通即可
 ```
-**若放通节点和clb层安全组后出现以下现象**
+**若放通节点和clb层安全组后出现以下现象:**
 ```
 [root@VM-35-179-tlinux ~]# curl -I http://119.91.244.213
 HTTP/1.1 504 Gateway Time-out
@@ -68,7 +68,7 @@ Content-Type: text/html
 Content-Length: 159
 Connection: keep-alive
 ```
-**排查方向**
+**排查方向:**
 ```
 ##出现这种情况可能为pod(辅助)网卡安全组被开启且安全组配置不正确
 [root@VM-35-179-tlinux ~]# kubectl logs -n kube-system deploy/tke-eni-ipamd | grep "Event"|grep "security groups from"|awk '{print $24}'|awk -F'[' '{print $2}'|awk -F']' '{print $1}'                            ##查询其所绑定的安全组
