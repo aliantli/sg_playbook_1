@@ -31,7 +31,7 @@ TKE版本>=1.20.6
 ```
 [root@VM-35-179-tlinux ~]# sh deploy_service.sh
 [root@VM-35-179-tlinux ~]# kubectl apply -f deployment.yaml
-[root@VM-35-179-tlinux ~]# kubectl apply -f service.yaml
+[root@VM-35-179-tlinux ~]# kubectl apply -f addservice.yaml
 ```
 
 # 演练分析
