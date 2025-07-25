@@ -13,14 +13,8 @@ spec:
       labels:
         app: my-app
     spec:
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:  # 硬性约束
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: kubernetes.io/hostname  # 节点名称标签
-                operator: In
-                values: [node_name]  # 绑定到 node
+      nodeSelector:
+        node.kubernetes.io/instance-type:  <node_name> 
       containers:
       - name: nginx
         image: nginx:latest
