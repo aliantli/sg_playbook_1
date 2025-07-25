@@ -3,7 +3,8 @@
 
 
 # 访问链路
-
+[<img width="741" height="220" alt="Clipboard_Screenshot_1753413617" src="https://github.com/user-attachments/assets/5d6b2a45-cac2-49eb-a100-c99b9da6ad25" />
+](https://github.com/aliantli/sg_playbook_1/blob/2539e2979bcccab0d2d568210854f783f9456ff3/playbook/Global%20Router%E4%B8%8B%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/image/flowchart.png)
 <br>在日常生产环境中常常通过在上述两个个位置是设置安全组来限制外网流量出入
 # 环境部署
 ## 前提条件
