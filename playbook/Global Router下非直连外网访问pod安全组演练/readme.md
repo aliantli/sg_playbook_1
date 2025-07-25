@@ -75,11 +75,12 @@ curl: (7) Failed to connect to 119.91.244.213 port 80: Connection timed out
 [root@VM-35-179-tlinux ~]# terraform destroy -auto-approve
 ```
 # 项目结构
+
 ```
-VPC-CNI下非直连外网访问pod安全组演练/  
-├── addservice.yaml      # 一键部署服务并为clb绑定安全组 
-├── readme.md       # 本文档
-├── tccli-delet-all.sh  #tccli工具示例清理脚本
-├── tccli_addgroup.sh  #tccli工具示例一键创建安全组脚本
-├── terraform——addgroup.tf  #terraform工具示例一键创建安全组脚本
+GlobalRouter下非直连外网访问pod安全组演练/  
+├── addservice.yaml      # 配置service并为clb绑定安全组 
+├── deployment.yaml    #部署deployment
+├── node_sg.tf      #创建节点和安全组并给节点绑定安全组
+├── readme.d        #本文件
 ```
+
