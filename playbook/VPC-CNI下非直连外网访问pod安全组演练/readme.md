@@ -5,7 +5,7 @@
 # 访问链路
 [<img width="929" height="220" alt="Clipboard_Screenshot_1753353506" src="https://github.com/user-attachments/assets/50b64512-e76f-4f4f-9174-adac68714031" />
 ](https://github.com/aliantli/sg_playbook_1/blob/f5b921b874729aa0ed684486e7a746d45ffb5d23/playbook/VPC-CNI%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/image/service_flowchart.png)
-<br>在日常生产环境中常常通过在上述三个位置是设置安全组来限制外网流量出入，pod(辅助)网卡处的安全组默认关闭可根据自己需求开启
+<br>在日常生产环境中可以通过在上述三个位置是设置安全组来限制外网流量出入，pod(辅助)网卡处的安全组默认关闭可根据自己需求开启
 # 环境部署
 ## 前提条件
 **1:tke集群要求**
