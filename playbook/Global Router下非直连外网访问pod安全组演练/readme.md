@@ -60,7 +60,12 @@ clb层面:出现这种情况一般为clb安全组配置问题，查看clb绑定�
 ### 若访问出现以下现象(504):
 ```
 [root@VM-35-179-tlinux ~]# curl -I http://119.91.244.213
-curl: (7) Failed to connect to 119.91.244.213 port 80: Connection timed out
+HTTP/1.1 504 Gateway Time-out
+Server: stgw
+Date: Tue, 22 Jul 2025 12:41:43 GMT
+Content-Type: text/html
+Content-Length: 159
+Connection: keep-alive
 ```
 排查方向:
 ```
