@@ -10,36 +10,20 @@
 ## 前提条件
 **1:tke集群要求**
 
-TKE版本:>=1.20.6
-<br>可参考:https://cloud.tencent.com/document/product/457/103981<br>
+TKE版本>=1.20.6
+<br>详情可参考:https://cloud.tencent.com/document/product/457/103981<br>
 网络模式:VPC-CNI<br>
-可参考:https://cloud.tencent.com/document/product/457/50355
+详情可参考:https://cloud.tencent.com/document/product/457/50355
 
 **2:工具准备**
 
 集群内配置好[terraform:v1.8.2](https://developer.hashicorp.com/terraform)
 ## 快速开始
 
-### 本次以terraform工具为例
-1:获取已有节点名字
-```
-[root@VM-35-179-tlinux ~]#kubectl get nodes -o wide|awk  '{print $1}'|grep -v 'NAME' > node_name.txt
-```
-2:创建节点和安全组并为节点绑定安全组
-```
-[root@VM-35-179-tlinux ~]# terraform apply -auto-approve|tail -1 > sg_id.txt  ####根据node_sg.tf文件注解更改配置
-```
-3:服务部署
-```
-[root@VM-35-179-tlinux ~]#b=`kubectl get nodes -o wide|awk  '{print $1}'|grep -v 'NAME'|grep -vFf  node_name.txt` ##找出新创建的节点名字
-[root@VM-35-179-tlinux ~]#sed -i "s/node_name/$b/g" deployment.yaml    ##使创建的deployment绑定到新节点上
-[root@VM-35-179-tlinux ~]#kubectl apply -f deployment.yaml
-[root@VM-35-179-tlinux ~]#c=`cat sg_id.txt|awk -F'"' '{print $2}'`    
-[root@VM-35-179-tlinux ~]#sed -i "s/sg-id/$c/g" addservice.yaml    ##使创建的安全组绑定到clb上
-[root@VM-35-179-tlinux ~]# kubectl apply -f addservice.yaml
-```
+ **本次以terraform工具为例**
+
 # 问题分析
-**获取公网ip**
+## 第一步:获取服务公网访问ip
 ```
 #执行下面命令查看ingress所生成的供外网访问的IP
 [root@VM-35-179-tlinux ~]# kubectl get service -o wide
@@ -47,22 +31,24 @@ NAME         TYPE           CLUSTER-IP      EXTERNAL-IP      PORT(S)        AGE 
 kubernetes   ClusterIP      172.16.0.1      <none>           443/TCP        4h22m   <none>
 nginx        LoadBalancer   172.16.60.200   119.91.244.213   80:30713/TCP   156m    app=nginx
 ```
-**访问ip出现以下现象**
+
+## 第二步:问题分析
+**若访问ip出现以下现象:**
 ```
 [root@VM-35-179-tlinux ~]# curl -I http://119.91.244.213
 curl: (7) Failed to connect to 119.91.244.213 port 80: Connection timed out
 ```
-**简要分析**
+**排查方向:**
 ```
 clb层面:出现这种情况一般为clb安全组配置问题，查看clb绑定的安全组，查看其是否放通http/https的监听端口
 ```
 
-**放通clb层安全组后出现以下现象**
+**若放通clb层安全组后出现以下现象:**
 ```
 [root@VM-35-179-tlinux ~]# curl -I http://119.91.244.213
 curl: (7) Failed to connect to 119.91.244.213 port 80: Connection timed out
 ```
-**简要分析**
+**排查方向:**
 ```
 ##出现这种情况可能为pod(辅助)网卡安全组被开启且安全组配置不正确
 [root@VM-35-179-tlinux ~]# kubectl logs -n kube-system deploy/tke-eni-ipamd | grep "Event"|grep "security groups from"|awk '{print $24}'|awk -F'[' '{print $2}'|awk -F']' '{print $1}'                            ##查询其所绑定的安全组
