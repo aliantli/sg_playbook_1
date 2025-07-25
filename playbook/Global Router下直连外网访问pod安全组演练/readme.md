@@ -22,7 +22,17 @@ TKE版本>=1.20.6
 
 
 **本次以terraform工具为例**
-
+1,创建节点与安全组并为节点绑定安全组
+```
+[root@VM-35-179-tlinux ~]# sh crete_no_sg_tf.sh
+[root@VM-35-179-tlinux ~]# terraform apply -auto-approve
+```
+2,服务部署并为clb绑定安全组
+```
+[root@VM-35-179-tlinux ~]# sh deploy_service.sh
+[root@VM-35-179-tlinux ~]# kubectl apply -f deployment.yaml
+[root@VM-35-179-tlinux ~]# kubectl apply -f addservice.yaml
+```
 
 # 问题分析
 ## 第一步:获取服务公网访问ip
