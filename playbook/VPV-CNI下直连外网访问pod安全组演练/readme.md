@@ -77,11 +77,9 @@ sg-97v29isn             ##输出的为pod(辅助)网卡所绑定的安全组id
 ```
 # 项目结构
 ```
-```
 VPC-CNI下直连外网访问pod安全组演练/  
 ├── addservice.yaml      # 配置service并为clb绑定安全组 
 ├── deployment.yaml    #部署deployment
 ├── node_sg.tf      #创建节点和安全组并给节点绑定安全组
 ├── readme.d        #本文件
-```
 ```
