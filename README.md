@@ -1,1 +1,0 @@
-# sg_playbook_1
