@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: nginx
   annotations:
-    service.cloud.tencent.com/security-groups: sg-id  ##替换成生成的对应安全组id
+    service.cloud.tencent.com/security-groups: <sg-id>  ##替换成生成的对应安全组id
 spec:
   type: LoadBalancer
   selector:
