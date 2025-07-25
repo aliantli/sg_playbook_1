@@ -20,8 +20,6 @@ TKE版本>=1.20.6
 
 配置好[terraform:v1.8.2](https://developer.hashicorp.com/terraform)
 ## 快速开始
-### 环境部署
-
 **以terraform为例**<br>
  1.创建节点与安全组并为节点绑定安全组
 ```
