@@ -21,7 +21,7 @@ TKE版本:>=1.20.6
 ## 快速开始
 
 ### 本次以terraform工具为例
-1:获取本节点名字
+1:获取已有节点名字
 ```
 [root@VM-35-179-tlinux ~]#kubectl get nodes -o wide|awk  '{print $1}'|grep -v 'NAME' > node_name.txt
 ```
