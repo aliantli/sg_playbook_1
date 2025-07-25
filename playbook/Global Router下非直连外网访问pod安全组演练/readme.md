@@ -73,8 +73,10 @@ curl: (7) Failed to connect to 119.91.244.213 port 80: Connection timed out
 # 项目结构
 
 ```
-GlobalRouter下非直连外网访问pod安全组演练/  
-├── addservice.yaml      # 配置service并为clb绑定安全组 
+GlobalRouter下非直连外网访问pod安全组演练/   
+├── addservice.yaml      # 配置service并为clb绑定安全组
+├── create_no_sg_td.sh   #配置tf文件脚本
+├──deploy_service.sh     #配置服务yaml文件脚本
 ├── deployment.yaml    #部署deployment
 ├── node_sg.tf      #创建节点和安全组并给节点绑定安全组
 ├── readme.d        #本文件
