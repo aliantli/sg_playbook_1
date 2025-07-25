@@ -3,8 +3,8 @@
 
 
 # 访问链路
-[<img width="795" height="247" alt="Clipboard_Screenshot_1753437215" src="https://github.com/user-attachments/assets/759ed6e8-48b9-452d-9fe8-134bb91229bc" />
-]
+<img width="795" height="247" alt="Clipboard_Screenshot_1753437215" src="https://github.com/user-attachments/assets/759ed6e8-48b9-452d-9fe8-134bb91229bc" />
+
  <br>&emsp;在日常生产环境中可以通过在上述三个位置是设置安全组来限制外网流量出入，以此控制入口流量的基础过滤，实现流量的精细管控，保障Pod资源安全(pod辅助网卡处的安全组默认关闭可根据自己需求开启)
 
 # 环境部署
