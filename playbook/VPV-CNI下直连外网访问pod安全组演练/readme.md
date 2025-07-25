@@ -33,7 +33,7 @@ nginx        LoadBalancer   172.16.60.200   119.91.244.213   80:30713/TCP   156m
 ```
 
 ## 第二步:问题分析
-**若访问ip出现以下现象:**
+**若访问出现以下现象:**
 ```
 [root@VM-35-179-tlinux ~]# curl -I http://119.91.244.213
 curl: (7) Failed to connect to 119.91.244.213 port 80: Connection timed out
