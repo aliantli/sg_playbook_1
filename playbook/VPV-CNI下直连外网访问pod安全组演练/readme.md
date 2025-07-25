@@ -3,7 +3,8 @@
 
 
 # 访问链路
-
+[<img width="746" height="196" alt="Clipboard_Screenshot_1753411845" src="https://github.com/user-attachments/assets/fee498f8-0a96-46f2-a8e6-b33300f59ac6" />
+](https://github.com/aliantli/sg_playbook_1/blob/287e10d6b82293982a8de5f399eab1f1809ddaad/playbook/VPV-CNI%E4%B8%8B%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/image/flowchart.png)
 <br>在日常生产环境中可以通过在上述两个个位置是设置安全组来限制外网流量出入，pod(辅助)网卡处的安全组默认关闭可根据自己需求开启
 # 环境部署
 ## 前提条件
@@ -20,7 +21,7 @@ TKE版本:>=1.20.6
 ## 快速开始
 
 ### 本次以terraform工具为例
-1:获取本节点名字
+1:获取已有节点名字
 ```
 [root@VM-35-179-tlinux ~]#kubectl get nodes -o wide|awk  '{print $1}'|grep -v 'NAME' > node_name.txt
 ```
