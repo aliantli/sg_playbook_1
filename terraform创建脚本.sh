@@ -23,7 +23,7 @@ terraform {
   required_providers {
     tencentcloud = {
       source  = "tencentcloudstack/tencentcloud"
-      version = "~>1.82.0" 
+      version = "~>1.82.0" #低于1.82.0在安全组配置时放通端口没有all选项
     }
   }
 }
