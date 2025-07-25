@@ -34,9 +34,9 @@ TKE版本:>=1.20.6
 ```
 [root@VM-35-179-tlinux ~]#b=`kubectl get nodes -o wide|awk  '{print $1}'|grep -v 'NAME'|grep -vFf  node_name.txt` ##找出新创建的节点名字
 [root@VM-35-179-tlinux ~]#sed -i "s/node_name/$b/g" deployment.yaml    ##使创建的deployment绑定到新节点上
-[root@VM-35-179-tlinux ~]#kubectl apply -f seployment.yaml
+[root@VM-35-179-tlinux ~]#kubectl apply -f deployment.yaml
 [root@VM-35-179-tlinux ~]#c=`cat sg_id.txt|awk -F'"' '{print $2}'`    
-[root@VM-35-179-tlinux ~]#sed -i "s/sg-id/$c/g" service.yaml    ##使创建的安全组绑定到clb上
+[root@VM-35-179-tlinux ~]#sed -i "s/sg-id/$c/g" addservice.yaml    ##使创建的安全组绑定到clb上
 [root@VM-35-179-tlinux ~]# kubectl apply -f service.yaml
 ```
 
