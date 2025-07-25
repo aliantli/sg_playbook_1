@@ -4,7 +4,8 @@
 
 
 # 访问链路
-
+[<img width="738" height="218" alt="Clipboard_Screenshot_1753412260" src="https://github.com/user-attachments/assets/a273323f-2fd0-455f-9dec-172289f5ce95" />
+](https://github.com/aliantli/sg_playbook_1/blob/0b97243906fd65bd29e34745b8687eb4d1adf276/playbook/Global%20Router%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/image/flowchart.png)
 <br>在日常生产环境中通过在上述两个个位置是设置安全组来限制外网流量出入
 # 环境部署
 ## 前提条件
@@ -21,7 +22,7 @@ TKE版本:>=1.20.6
 ## 快速开始
 
 ### 本次以terraform工具为例
-1:获取本节点名字
+1:获取已有节点名字
 ```
 [root@VM-35-179-tlinux ~]#kubectl get nodes -o wide|awk  '{print $1}'|grep -v 'NAME' > node_name.txt
 ```
