@@ -1,4 +1,3 @@
-#确保所有标签内容一致
 # 安全组1：仅允许 TCP 22 入站，出站全放通
 resource "tencentcloud_security_group" "mgmt_sg" {
   name        = "allow-ssh-only"
@@ -64,13 +63,6 @@ resource "tencentcloud_security_group_rule" "allow_egress" {
   description       = "允许所有出站流量"
 }
 
-# 输出安全组 ID
-# 输出安全组 ID
-
-output "将此安全组绑定到clb上" {
-  value = tencentcloud_security_group.mgmt_sg.id
-}
-
 ##注解部分为主要配置
 resource "tencentcloud_kubernetes_native_node_pool" "native_nodepool_cvm" {
   name                = "native"
@@ -115,4 +107,4 @@ resource "tencentcloud_kubernetes_native_node_pool" "native_nodepool_cvm" {
     }
   }
 }
-##只能使用ssh密钥登录，要免密登录需开启tat组件
+##只能使用ssh密钥登��，要免密登录需开启tat组件
