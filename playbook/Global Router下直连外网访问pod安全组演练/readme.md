@@ -3,8 +3,8 @@
 
 
 # 访问链路
-[<img width="749" height="262" alt="Clipboard_Screenshot_1753436019" src="https://github.com/user-attachments/assets/436906eb-291a-4d26-b1ac-93d88ad1ee4b" />
-](https://github.com/aliantli/sg_playbook_1/blob/cfb75d6a285093494d96b44a628ebacf6d387a40/playbook/Global%20Router%E4%B8%8B%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/image/flow_chart.png)
+[<img width="708" height="223" alt="Clipboard_Screenshot_1753436388" src="https://github.com/user-attachments/assets/18e10893-ea0d-47db-bf42-62ec705ff9d6" />
+](https://github.com/aliantli/sg_playbook_1/blob/a5da1faa287e543ffc7644b3f70531fe2237e437/playbook/Global%20Router%E4%B8%8B%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/image/flowchart.png)
 <br>&emsp;在日常生产环境中可以通过在上述两个位置是设置安全组来限制外网流量出入，以此控制入口流量的基础过滤，实现流量的精细管控，保障Pod资源安全
 # 环境部署
 ## 前提条件
