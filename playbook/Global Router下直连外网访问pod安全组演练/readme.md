@@ -32,7 +32,7 @@ TKE版本>=1.20.6
 以clb类型Service为例
 [root@VM-35-179-tlinux ~]# sh deploy_service.sh
 [root@VM-35-179-tlinux ~]# kubectl apply -f deployment.yaml
-[root@VM-35-179-tlinux ~]# kubectl apply -f addservice.yaml
+[root@VM-35-179-tlinux ~]# kubectl apply -f service.yaml
 ```
 
 # 演练分析
@@ -74,7 +74,7 @@ curl: (7) Failed to connect to 119.91.244.213 port 80: Connection timed out
 # 项目结构
 ```
 GlobalRouter下直连外网访问pod安全组演练/  
-├── addservice.yaml      # 配置service并为clb绑定安全组
+├── service.yaml      # 配置service并为clb绑定安全组
 ├── create_no_sg_td.sh   #配置tf文件脚本
 ├──deploy_service.sh     #配置服务yaml文件脚本
 ├── deployment.yaml    #部署deployment
