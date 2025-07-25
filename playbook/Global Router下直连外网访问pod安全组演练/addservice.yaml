@@ -6,7 +6,7 @@ metadata:
     annotations:
     service.cloud.tencent.com/direct-access: "true"  # 关键注解：启用直连
     service.cloud.tencent.com/loadbalance-type: "OPEN"  # 公网CLB
-    service.cloud.tencent.com/security-groups: sg-id  ##替换成生成的对应安全组id
+    service.cloud.tencent.com/security-groups: <sg-id>  ##替换成生成的对应安全组id
 spec:
   type: LoadBalancer
   selector:
