@@ -17,25 +17,25 @@ TKE版本>=1.20.6
 
 **2:工具准备**
 
-集群内配置好[terraform:v1.8.2](https://developer.hashicorp.com/terraform)
+配置好[terraform:v1.8.2](https://developer.hashicorp.com/terraform)
 ## 快速开始
 
 
-**以terraform为例**
-### 1,创建节点与安全组并为节点绑定安全组
+**以terraform为例**<br>
+1.创建节点与安全组并为节点绑定安全组
 ```
 [root@VM-35-179-tlinux ~]# sh crete_no_sg_tf.sh
 [root@VM-35-179-tlinux ~]# terraform apply -auto-approve
 ```
-### 2,服务部署并为clb绑定安全组
-**以clb类型Service为例**
+2.服务部署并为clb绑定安全组
 ```
+以clb类型Service为例
 [root@VM-35-179-tlinux ~]# sh deploy_service.sh
 [root@VM-35-179-tlinux ~]# kubectl apply -f deployment.yaml
 [root@VM-35-179-tlinux ~]# kubectl apply -f addservice.yaml
 ```
 
-# 问题分析
+# 演练分析
 ## 第一步:获取服务公网访问ip
 ```
 #执行下面命令查看ingress所生成的供外网访问的IP
@@ -45,21 +45,21 @@ kubernetes   ClusterIP      172.16.0.1      <none>           443/TCP        4h22
 nginx        LoadBalancer   172.16.60.200   119.91.244.213   80:30713/TCP   156m    app=nginx
 ```
 ## 第二步:问题分析
-**若访问出现以下现象:**
+### 若访问出现以下现象:
 ```
 [root@VM-35-179-tlinux ~]# curl -I http://119.91.244.213
 curl: (7) Failed to connect to 119.91.244.213 port 80: Connection timed out
 ```
-**排查方向:**
+排查方向:
 ```
 clb层面:出现这种情况一般为clb安全组配置问题，查看clb绑定的安全组，查看其是否放通http/https的监听端口
 ```
-**若访问出现以下现象:**
+### 若访问出现以下现象:
 ```
 [root@VM-35-179-tlinux ~]# curl -I http://119.91.244.213
 curl: (7) Failed to connect to 119.91.244.213 port 80: Connection timed out
 ```
-**排查方向:**
+排查方向:
 ```
 节点层面：出现这种情况一般为节点安全组配置问题，前往节点所绑定的安全组，查看其是否放通service所绑定的主机端口和pod服务所暴露的端口，如果未放通放通即可
 ```
