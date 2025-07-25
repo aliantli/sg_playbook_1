@@ -30,9 +30,8 @@ TKE版本:>=1.20.6
 [root@VM-35-179-tlinux ~]# terraform apply -auto-approve|tail -1 > sg_id.txt  ##根据node_sg.tf文件注解更改配置
 ```
 3:服务部署
-```
-[root@VM-35-179-tlinux ~]#a=`cat node_name.txt`    
-[root@VM-35-179-tlinux ~]#b=kubectl get nodes -o wide|awk  '{print $1}'|grep -v 'NAME'|grep $a  ##找出新创建的节点名字
+``` 
+[root@VM-35-179-tlinux ~]#b=kubectl get nodes -o wide|awk  '{print $1}'|grep -v 'NAME'|grep -vFf  node_name.txt  ##找出新创建的节点名字
 [root@VM-35-179-tlinux ~]#sed -i 's/node_name/$b/g' deployment.yaml    ##使创建的deployment绑定到新节点上
 [root@VM-35-179-tlinux ~]#kubectl apply -f seployment.yaml
 [root@VM-35-179-tlinux ~]#c=`cat sg_id.txt|awk -F'"' '{print $2}'`    
