@@ -24,12 +24,14 @@ TKE版本>=1.20.6
 **以terraform为例**<br>
 1,创建节点与安全组并为节点绑定安全组
 ```
-[root@VM-35-179-tlinux ~]# sed -e "s/key/$key/g" -e "s/values/$values/g" -e "s/cls_id/$cls_id/g" -e"s/sub_net/$sub_net/g" no_sg.txt > no_sg.tf        
+[root@VM-35-179-tlinux ~]# sh crete_no_sg_tf.sh
 [root@VM-35-179-tlinux ~]# terraform apply -auto-approve
 ```
 2,服务部署并为clb绑定安全组
 ```
-
+[root@VM-35-179-tlinux ~]# sh deploy_service.sh
+[root@VM-35-179-tlinux ~]# kubectl apply -f deployment.yaml
+[root@VM-35-179-tlinux ~]# kubectl apply -f service.yaml
 ```
 
 # 演练分析
