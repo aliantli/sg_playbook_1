@@ -14,7 +14,7 @@ spec:
         app: my-app
     spec:
       nodeSelector:
-        node.kubernetes.io/instance-type:   
+        node.kubernetes.io/instance-type:  <node_name> 
       containers:
       - name: nginx
         image: nginx:latest
