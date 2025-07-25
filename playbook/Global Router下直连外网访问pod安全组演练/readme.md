@@ -3,8 +3,8 @@
 
 
 # 访问链路
-[<img width="741" height="220" alt="Clipboard_Screenshot_1753413617" src="https://github.com/user-attachments/assets/5d6b2a45-cac2-49eb-a100-c99b9da6ad25" />
-](https://github.com/aliantli/sg_playbook_1/blob/2539e2979bcccab0d2d568210854f783f9456ff3/playbook/Global%20Router%E4%B8%8B%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/image/flowchart.png)
+[<img width="749" height="262" alt="Clipboard_Screenshot_1753436019" src="https://github.com/user-attachments/assets/436906eb-291a-4d26-b1ac-93d88ad1ee4b" />
+](https://github.com/aliantli/sg_playbook_1/blob/cfb75d6a285093494d96b44a628ebacf6d387a40/playbook/Global%20Router%E4%B8%8B%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/image/flow_chart.png)
 <br>&emsp;在日常生产环境中可以通过在上述两个位置是设置安全组来限制外网流量出入，以此控制入口流量的基础过滤，实现流量的精细管控，保障Pod资源安全
 # 环境部署
 ## 前提条件
@@ -73,7 +73,9 @@ curl: (7) Failed to connect to 119.91.244.213 port 80: Connection timed out
 # 项目结构
 ```
 GlobalRouter下直连外网访问pod安全组演练/  
-├── addservice.yaml      # 配置service并为clb绑定安全组 
+├── addservice.yaml      # 配置service并为clb绑定安全组
+├── create_no_sg_td.sh   #配置tf文件脚本
+├──deploy_service.sh     #配置服务yaml文件脚本
 ├── deployment.yaml    #部署deployment
 ├── node_sg.tf      #创建节点和安全组并给节点绑定安全组
 ├── readme.d        #本文件
