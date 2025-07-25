@@ -22,25 +22,8 @@ TKE版本>=1.20.6
 ## 快速开始
 ### 环境部署
 **以terraform为例**<br>
-1:获取已有节点名字
-```
-[root@VM-35-179-tlinux ~]#kubectl get nodes -o wide|awk  '{print $1}'|grep -v 'NAME' > node_name.txt
-```
-2:创建节点和安全组并为节点绑定安全组
-```
-[root@VM-35-179-tlinux ~]# terraform apply -auto-approve|tail -1 > sg_id.txt  ##根据node_sg.tf文件注解更改配置
-```
-3:服务部署
 
-```
-以clb类型Service为例
-[root@VM-35-179-tlinux ~]#b=`kubectl get nodes -o wide|awk  '{print $1}'|grep -v 'NAME'|grep -vFf  node_name.txt` ##找出新创建的节点名字
-[root@VM-35-179-tlinux ~]#sed -i "s/node_name/$b/g" deployment.yaml    ##使创建的deployment绑定到新节点上
-[root@VM-35-179-tlinux ~]#kubectl apply -f deployment.yaml
-[root@VM-35-179-tlinux ~]#c=`cat sg_id.txt|awk -F'"' '{print $2}'`    
-[root@VM-35-179-tlinux ~]#sed -i "s/sg-id/$c/g" addservice.yaml    ##使创建的安全组绑定到clb上
-[root@VM-35-179-tlinux ~]# kubectl apply -f addservice.yaml
-```
+
 
 # 演练分析
 ## 第一步:获取服务公网访问ip
