@@ -20,8 +20,8 @@ TKE版本:>=1.20.6
 
 集群内配置好[terraform:v1.8.2](https://developer.hashicorp.com/terraform)
 ## 快速开始
-
-### 本次以terraform工具为例
+### 环境部署
+**本次以terraform工具为例**<br>
 1:获取已有节点名字
 ```
 [root@VM-35-179-tlinux ~]#kubectl get nodes -o wide|awk  '{print $1}'|grep -v 'NAME' > node_name.txt
@@ -40,8 +40,8 @@ TKE版本:>=1.20.6
 [root@VM-35-179-tlinux ~]# kubectl apply -f addservice.yaml
 ```
 
-# 问题分析
-**获取公网ip**
+# 演练分析
+## 第一步:获取服务公网访问ip
 ```
 #执行下面命令查看ingress所生成的供外网访问的IP
 [root@VM-35-179-tlinux ~]# kubectl get service -o wide
@@ -49,7 +49,8 @@ NAME         TYPE           CLUSTER-IP      EXTERNAL-IP      PORT(S)        AGE 
 kubernetes   ClusterIP      172.16.0.1      <none>           443/TCP        4h22m   <none>
 nginx        LoadBalancer   172.16.60.200   119.91.244.213   80:30713/TCP   156m    app=nginx
 ```
-**访问ip出现以下现象**
+## 第二步:问题分析
+**若访问时出现以下现象**
 ```
 [root@VM-35-179-tlinux ~]# curl -I http://119.91.244.213
 curl: (7) Failed to connect to 119.91.244.213 port 80: Connection timed out
@@ -58,7 +59,7 @@ curl: (7) Failed to connect to 119.91.244.213 port 80: Connection timed out
 ```
 clb层面:出现这种情况一般为clb安全组配置问题，查看clb绑定的安全组，查看其是否放通http/https的监听端口
 ```
-**访问ip出现以下现象**
+**若访问时出现以下现象**
 ```
 [root@VM-35-179-tlinux ~]# curl -I http://119.91.244.213
 HTTP/1.1 504 Gateway Time-out
@@ -72,7 +73,7 @@ Connection: keep-alive
 ```
 节点层面：出现这种情况一般为节点安全组配置问题，前往节点所绑定的安全组，查看其是否放通service所绑定的主机端口，如果未放通放通即可
 ```
-**放通节点和clb层安全组后出现以下现象**
+**若放通节点和clb层安全组后出现以下现象**
 ```
 [root@VM-35-179-tlinux ~]# curl -I http://119.91.244.213
 HTTP/1.1 504 Gateway Time-out
