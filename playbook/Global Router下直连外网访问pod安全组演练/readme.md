@@ -45,7 +45,7 @@ kubernetes   ClusterIP      172.16.0.1      <none>           443/TCP        4h22
 nginx        LoadBalancer   172.16.60.200   119.91.244.213   80:30713/TCP   156m    app=nginx
 ```
 ## 第二步:问题分析
-### 若访问出现以下现象(tome out):
+### 若访问出现以下现象(time out):
 ```
 [root@VM-35-179-tlinux ~]# curl -I http://119.91.244.213
 curl: (7) Failed to connect to 119.91.244.213 port 80: Connection timed out
