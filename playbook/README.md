@@ -7,7 +7,8 @@
 非直连模式下流量经过NodePort转发，源IP丢失；
 直连模式未正确配置时，CLB无法穿透节点直达Pod。
 本项目提供五种标准化场景的解决方案，覆盖TKE两种网络模式和两种节点类型，确保业务零改造获取真实客户端IP。
-
+[<img width="1720" height="1737" alt="Clipboard_Screenshot_1753700990" src="https://github.com/user-attachments/assets/f119eec0-6d72-4579-8c66-3922a706cc65" />
+](https://github.com/aliantli/sg_playbook_1/blob/de2b28c6718825d4c671eba9587caf49fa51879d/playbook/image/flowchart.md)
 
 | 场景    | 网络模式       | 连接方式       |节点类型|
 |----------------|----------------|----------------|------|
