@@ -38,31 +38,25 @@ TKE版本>=1.20.6
 # 演练分析
 ## 第一步:获取服务公网访问ip
 ```
-[root@VM-35-179-tlinux ~]# kubectl get service -o wide
-NAME         TYPE           CLUSTER-IP      EXTERNAL-IP      PORT(S)        AGE     SELECTOR
-kubernetes   ClusterIP      172.16.0.1      <none>           443/TCP        4h22m   <none>
-nginx        LoadBalancer   172.16.60.200   119.91.244.213   80:30713/TCP   156m    app=nginx
+NAME         TYPE           CLUSTER-IP       EXTERNAL-IP      PORT(S)        AGE     SELECTOR
+kubernetes   ClusterIP      192.168.0.1      <none>           443/TCP        5h44m   <none>
+nginx        LoadBalancer   192.168.9.250    193.112.115.15   80:31234/TCP   74m     app=nginx
 ```
 ## 第二步:问题分析
-### 若访问时出现以下现象:
+### 若访问时出现以下现象(time out):
 ```
-[root@VM-35-179-tlinux ~]# curl -I http://119.91.244.213
-curl: (7) Failed to connect to 119.91.244.213 port 80: Connection timed out
+root@VM-35-82-tlinux ~]# curl 193.112.115.15
+curl: (7) Failed to connect to 193.112.115.15 port 80: Connection timed out
 ```
 排查方向:
 ```
 clb层面:出现这种情况一般为clb安全组配置问题，查看clb绑定的安全组，查看其是否放通http/https的监听端口
 ```
 
-### 若放通clb层安全组后出现以下现象(504):
+### 若放通clb层安全组后出现以下现象(time out):
 ```
-[root@VM-35-179-tlinux ~]# curl -I http://119.91.244.213
-HTTP/1.1 504 Gateway Time-out
-Server: stgw
-Date: Tue, 22 Jul 2025 12:41:43 GMT
-Content-Type: text/html
-Content-Length: 159
-Connection: keep-alive
+root@VM-35-82-tlinux ~]# curl 193.112.115.15
+curl: (7) Failed to connect to 193.112.115.15 port 80: Connection timed out
 ```
 排查方向:
 ```
