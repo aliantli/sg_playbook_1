@@ -4,7 +4,8 @@
 
 # 访问链路
 
-
+[<img width="1279" height="282" alt="Clipboard_Screenshot_1753442409" src="https://github.com/user-attachments/assets/c3b4c8e7-fd40-470b-b888-b42c0a587b83" />
+](https://github.com/aliantli/sg_playbook_1/blob/61bcfb6b687b0decea3feef36079e81b33eb2648/playbook/VPC-CNI%E8%B6%85%E7%BA%A7%E8%8A%82%E7%82%B9%E4%B8%8B%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/image/flowchart.md)
  <br>&emsp;在日常生产环境中可以通过在上述三个位置是设置安全组来限制外网流量出入，以此控制入口流量的基础过滤，实现流量的精细管控，保障Pod资源安全(pod辅助网卡处的安全组默认关闭可根据自己需求开启)
 
 # 环境部署
