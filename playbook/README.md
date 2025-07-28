@@ -62,18 +62,45 @@ resource "tencentcloud_kubernetes_native_node_pool" "native_nodepool_cvm" {
 ## 超级节点创建
 ```
 resource "tencentcloud_kubernetes_serverless_node_pool" "example" {
-  cluster_id = "<cls-id>"
+  cluster_id = "<cls-id>"  #集群id
   name       = "tf_example_serverless_node_pool"
 
   serverless_nodes {
     display_name = "tf_example_serverless_node1"
-    subnet_id    = "<sub-id>"
+    subnet_id    = "<sub-id>"  #子网id
   }
 
 
-  security_group_ids = [tencentcloud_security_group.baseline_sg.id]
+  security_group_ids = [tencentcloud_security_group.baseline_sg.id]  #安全组id
   labels = {
-    "label1" : "value1",
+    "label1" : "value1",  #标签
   }
+}
+```
+## 安全组的创建
+```
+resource "tencentcloud_security_group" "mgmt_sg" {
+  name        = "allow-ssh-only"
+  description = "仅允许 SSH 22 入站，出站全放通"
+  tags = {
+    <key> = "<values>"  #配置标签
+  }
+}
+resource "tencentcloud_security_group_rule" "ssh_ingress" {
+  security_group_id = tencentcloud_security_group.mgmt_sg.id
+  type              = "ingress"  #入站
+  cidr_ip           = "0.0.0.0/0"  #ip
+  ip_protocol       = "tcp"  #协议
+  port_range        = "22"    # 开放端口
+  policy            = "ACCEPT"
+  description       = "允许 SSH 入站"
+}
+resource "tencentcloud_security_group_rule" "ssh_egress" {
+  security_group_id = tencentcloud_security_group.mgmt_sg.id
+  type              = "egress"  #出站
+  cidr_ip           = "0.0.0.0/0"
+  ip_protocol       = "ALL"
+  policy            = "ACCEPT"
+  description       = "允许所有出站流量"
 }
 ```
