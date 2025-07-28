@@ -73,7 +73,7 @@ resource "tencentcloud_kubernetes_serverless_node_pool" "example" {
   }
 
 
-  security_group_ids = [tencentcloud_security_group_rule.deny_ingress.id]
+  security_group_ids = [tencentcloud_security_group.baseline_sg.id]
   labels = {
     "label1" : "value1",
   }
