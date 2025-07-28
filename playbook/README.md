@@ -6,13 +6,13 @@
 [<img width="1720" height="1737" alt="Clipboard_Screenshot_1753700990" src="https://github.com/user-attachments/assets/f119eec0-6d72-4579-8c66-3922a706cc65" />
 ](https://github.com/aliantli/sg_playbook_1/blob/de2b28c6718825d4c671eba9587caf49fa51879d/playbook/image/flowchart.md)
 ## 五大场景对比
-| 场景    | 网络模式       | 连接方式       |节点类型|
-|----------------|----------------|----------------|------|
-| 场景1   | VPC-CNI   | 直连  |原生节点|
-| 场景2  | VPC-CNI    | 非直连  |原生节点|
-| 场景3  | VPC-CNI   | 直连   |超级节点|
-| 场景4  | GlobalRouter  | 直连 |  原生节点|
-| 场景5  | GlobalRouter  | 非直连|   原生节点|
+| 场景            | 网络模式         | 连接方式         |节点类型 |核心特征|
+|----------------|----------------|----------------|------|--|
+| 场景1   | VPC-CNI   | 直连  |原生节点|direct-access: true|
+| 场景2  | VPC-CNI    | 非直连  |原生节点|type: NodePort + ingress.class: qcloud|
+| 场景3  | VPC-CNI   | 直连   |超级节点|天然支持直连|
+| 场景4  | GlobalRouter  | 直连 |  原生节点|GlobalRouteDirectAccess=true,direct-access: tru|
+| 场景5  | GlobalRouter  | 非直连|   原生节点|type: NodePort + ingress.class: qcloud|
 ## 业务场景配置举例说明
 ### 原生节点创建
 ```
