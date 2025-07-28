@@ -13,3 +13,51 @@
 | 场景5  | GlobalRouter  | 非直连|   原生节点|
 # 业务场景配置举例说明
 原生节点创建
+```
+resource "tencentcloud_kubernetes_native_node_pool" "native_nodepool_cvm" {
+  name                = "native"
+  cluster_id          = "<cls-id>"   ##集群id
+  type                = "Native"        ##节点类型
+  unschedulable       = false            ##是否封锁节点，true为封锁
+  labels {
+    name  = "test11"
+    value = "test21"
+  }
+
+  native {
+    instance_charge_type     = "POSTPAID_BY_HOUR"    ##按量计费，其他计费模式可能会导致创建节点时卡在第一步
+    instance_types           = ["SA2.MEDIUM2"]    ##机器类型
+    security_group_ids       = [tencentcloud_security_group.baseline_sg.id]    ##安全组id
+    subnet_ids               = ["<sub-id>"]    ##子网id
+    auto_repair              = true
+    health_check_policy_name = null
+    enable_autoscaling       = false
+    host_name_pattern        = null
+    replicas                 = 1                #节点池内节点数量
+    machine_type             = "NativeCVM"     # Native原生节点需要开启tat组件才能登录，NativeCVM原生节点CVM模式不需要tat组件但需要用ssh密钥登录
+
+    system_disk {
+      disk_type = "CLOUD_PREMIUM"
+      disk_size = 50
+    }
+
+
+    data_disks {
+        auto_format_and_mount = true
+        disk_type             = "CLOUD_PREMIUM"
+        disk_size             = 50
+        file_system           = "xfs"
+        mount_target          = "/var/lib/container"
+    }
+
+    scaling {
+      min_replicas  = 1
+      max_replicas  = 3
+      create_policy = "ZoneEquality"
+    }
+  }
+}
+```
+超级节点创建
+```
+```
