@@ -28,3 +28,6 @@ terraform {
   }
 }
 EOF
+
+
+terraform init -upgrade
