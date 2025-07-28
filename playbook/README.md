@@ -12,7 +12,7 @@
 | 场景4  | GlobalRouter  | 直连 |  原生节点|
 | 场景5  | GlobalRouter  | 非直连|   原生节点|
 # 业务场景配置举例说明
-原生节点创建
+## 原生节点创建
 ```
 resource "tencentcloud_kubernetes_native_node_pool" "native_nodepool_cvm" {
   name                = "native"
@@ -58,6 +58,21 @@ resource "tencentcloud_kubernetes_native_node_pool" "native_nodepool_cvm" {
   }
 }
 ```
-超级节点创建
+## 超级节点创建
 ```
+resource "tencentcloud_kubernetes_serverless_node_pool" "example" {
+  cluster_id = "<cls-id>"
+  name       = "tf_example_serverless_node_pool"
+
+  serverless_nodes {
+    display_name = "tf_example_serverless_node1"
+    subnet_id    = "<sub-id>"
+  }
+
+
+  security_group_ids = [tencentcloud_security_group.baseline_sg.id]
+  labels = {
+    "label1" : "value1",
+  }
+}
 ```
