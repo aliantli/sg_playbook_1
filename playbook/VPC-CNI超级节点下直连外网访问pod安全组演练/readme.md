@@ -53,7 +53,7 @@ curl: (7) Failed to connect to 119.91.244.213 port 80: Connection timed out
 ```
 clb层面:出现这种情况一般为clb安全组配置问题，查看clb绑定的安全组，查看其是否放通http/https的监听端口
 ```
-### 若访问时出现以下现象(time out):
+### 若访问时出现以下现象(504):
 ```
 [root@VM-35-179-tlinux ~]# curl -I http://119.91.244.213
 HTTP/1.1 504 Gateway Time-out
