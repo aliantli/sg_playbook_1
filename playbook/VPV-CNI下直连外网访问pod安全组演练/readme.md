@@ -40,7 +40,6 @@ TKE版本>=1.20.6
 # 问题分析
 ## 第一步:获取服务公网访问ip
 ```
-#执行下面命令查看ingress所生成的供外网访问的IP
 [root@VM-35-179-tlinux ~]# kubectl get service -o wide
 NAME         TYPE           CLUSTER-IP      EXTERNAL-IP      PORT(S)        AGE     SELECTOR
 kubernetes   ClusterIP      172.16.0.1      <none>           443/TCP        4h22m   <none>
