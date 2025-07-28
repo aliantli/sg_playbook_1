@@ -31,6 +31,8 @@ TKE版本>=1.20.6
 ```
 以clb类型Service为例
 [root@VM-35-179-tlinux ~]# sh deploy_service.sh
+[root@VM-35-179-tlinux ~]# kubectl patch cm tke-service-controller-config -n kube-system \
+  --patch '{"data":{"GlobalRouteDirectAccess":"true"}}'  # 启用全局直连
 [root@VM-35-179-tlinux ~]# kubectl apply -f deployment.yaml
 [root@VM-35-179-tlinux ~]# kubectl apply -f service.yaml
 ```
