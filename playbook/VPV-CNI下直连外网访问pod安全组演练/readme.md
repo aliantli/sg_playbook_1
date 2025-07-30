@@ -10,14 +10,14 @@
 <br>&emsp;在日常生产环境中可以通过在上述两个位置是设置安全组来限制外网流量出入，以此控制入口流量的基础过滤，实现流量的精细管控，保障Pod资源安全(pod(辅助)网卡处的安全组默认关闭可根据自己需求开启)
 # 环境部署
 ## 前提条件
-**1:tke集群要求**
+**1.tke集群要求**
 
 TKE版本>=1.20.6
 <br>详情可参考:https://cloud.tencent.com/document/product/457/103981<br>
 网络模式:VPC-CNI<br>
 详情可参考:https://cloud.tencent.com/document/product/457/50355
 
-**2:工具准备**
+**2.工具准备**
 
 集群内配置好[terraform:v1.8.2](https://developer.hashicorp.com/terraform)
 ## 快速开始
