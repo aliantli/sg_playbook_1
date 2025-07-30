@@ -3,8 +3,9 @@
 
 
 # 访问链路
-[<img width="1556" height="352" alt="Clipboard_Screenshot_1753442726" src="https://github.com/user-attachments/assets/6a1dcdf8-b360-404f-8993-b273a87c8ece" />
-](https://github.com/aliantli/sg_playbook_1/blob/36dc860c8e4688fd997e14174b21db64b64b7b58/playbook/VPC-CNI%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/image/flowchart.md)
+VPC-CNI下clb非直连pod访问:<br>
+[<img width="723" height="268" alt="Clipboard_Screenshot_1753876960" src="https://github.com/user-attachments/assets/e69c71b4-9f6d-43f7-b6b6-bf069233af11" />
+](https://github.com/aliantli/sg_playbook_1/blob/bd7566f5836a8c3e53366e059694f9a60eafef3c/playbook/VPC-CNI%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/image/flowchart1.md)
 
  <br>&emsp;在日常生产环境中可以通过在上述三个位置是设置安全组来限制外网流量出入，以此控制入口流量的基础过滤，实现流量的精细管控，保障Pod资源安全(pod辅助网卡处的安全组默认关闭可根据自己需求开启)
 
