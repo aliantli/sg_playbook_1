@@ -34,8 +34,9 @@ TKE版本>=1.20.6
 
 # 演练分析
 ## 第一步:获取服务名与访问ip
-[root@VM-35-20-tlinux terraform]# kubectl get pods -o wide|awk '{print $6}'|grep -v IP
-172.17.0.131
+```
+[root@VM-35-20-tlinux terraform]# kubectl get pods -o wide|awk '{printf "podname:"$1"\t""pod_ip:"$6"\n"}'|grep -v "NAME"|grep -v IP
+podname:nginx-pod       pod_ip:172.17.0.131
 ```
 ## 第二步:问题分析
 ### 若访问时出现以下现象:
@@ -54,11 +55,12 @@ curl: (28) Failed to connect to 172.17.0.131 port 80: Connection timed out
 ```
 # 项目结构
 ```
-VPC-CNI下非直连外网访问pod安全组演练/  
+GlobalRouter_NodeAccessPod/  
 ├── pod.yaml      # 创建pod并指定pod绑定到对应节点上
-├── create_no_sg_td.sh   #配置tf文件脚本
-├── node_sg.tf      #创建节点和安全组并给节点绑定安全组
+├── create_node_tf.sh   #配置tf文件脚本
+├── create_node_sg.template      #创建节点和安全组并给节点绑定安全组
 ├── readme.d        #本文件
+├── setup_podyaml  #为pod指定节点
 ```
 
 
