@@ -85,7 +85,7 @@ Connection: keep-alive
 sg-xxxxxx            ##输出的为pod(辅助)网卡所绑定的安全组id
 ##查看其绑定的安全组是否放通pod服务端口如果未放通放通即可
 ```
-# 资源清理
+# 演练环境清理
 ```
 [root@VM-35-179-tlinux ~]# kubectl delete apply -f addservice.yaml
 [root@VM-35-179-tlinux ~]# kubectl delete apply -f deployment.yaml
