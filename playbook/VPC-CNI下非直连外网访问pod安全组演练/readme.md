@@ -10,14 +10,14 @@
 
 # 环境部署
 ## 前提条件
-**1:tke集群要求**
+**1.tke集群要求**
 
 TKE版本>=1.20.6
 <br>详情可参考:https://cloud.tencent.com/document/product/457/103981<br>
 网络模式:VPC-CNI<br>
 详情可参考:https://cloud.tencent.com/document/product/457/50355
 
-**2:工具准备**
+**2.工具准备**
 
 配置好[terraform:v1.8.2](https://developer.hashicorp.com/terraform)
 ## 快速开始
