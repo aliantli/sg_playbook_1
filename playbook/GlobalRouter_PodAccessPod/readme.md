@@ -3,8 +3,9 @@
 
 
 # 访问链路
-[<img width="1026" height="462" alt="Clipboard_Screenshot_1753863877" src="https://github.com/user-attachments/assets/4352f6e7-2335-4ff0-83df-178caa058191" />
-](https://github.com/aliantli/sg_playbook_1/blob/20673a4343f159a60068fc1a6914ef3de34c1fd2/playbook/GlobalRouter_PodAccessPod/image/flowchart.md)
+Global Router下pod与pod跨节点访问:<br>
+[<img width="619" height="249" alt="Clipboard_Screenshot_1753878464" src="https://github.com/user-attachments/assets/328fa4c9-3018-43e4-bb06-a89af82bbbfd" />
+](https://github.com/aliantli/sg_playbook_1/blob/874392fa1501ff3e3e9c81867f19a7d35e044a16/playbook/GlobalRouter_PodAccessPod/image/flowchart.md)
  <br>&emsp;在日常生产环境中可以通过在上述位置设置安全组来限制流量出入，以此控制入口流量的基础过滤，实现流量的精细管控，保障Pod资源安全
 
 # 环境部署
