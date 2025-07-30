@@ -24,7 +24,7 @@ TKE版本>=1.20.6
 **以terraform为例**<br>
  1.创建原生节点
 ```
-[root@VM-35-139-tlinux terraform]# sh create_node_tf.sh 
+[root@VM-35-139-tlinux terraform]# sh create_super_node_tf.sh 
 [root@VM-35-139-tlinux terraform]# terraform apply -auto-approve
 ```
  2.创建pod服务并将其绑定在指定原生节点上
