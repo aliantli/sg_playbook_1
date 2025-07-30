@@ -1,2 +1,2 @@
-IP1=`kubectl get pods -o wide|awk '{printf $6"\n"}'|grep -v IP`
-sed -i 's/<pod_ip1>/$IP1/g' pod.yaml
+IP1=`kubectl get nodes -l test11=test21 -o jsonpath='{.items[*].metadata.name}'
+sed -i 's/<node_ip1>/$IP1/g' pod.yaml
