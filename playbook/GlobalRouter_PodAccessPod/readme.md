@@ -36,7 +36,12 @@ TKE版本>=1.20.6
 [root@VM-35-20-tlinux terraform]# kubectl get pods -o wide|awk '{print $6}'|grep -v IP
 172.17.0.131
 ```
-## 第二步:问题分析
+## 第二步:登录任意pod
+```
+[root@VM-35-20-tlinux terraform]# kubectl exec -it nginx-pod -- sh
+#
+```
+## 第三步:问题分析
 ### 若访问时出现以下现象:
 ```
 [root@VM-35-20-tlinux terraform]# 172.17.0.131
