@@ -1,6 +1,6 @@
 
 # 概述
-&emsp;安全组作为容器基础设施层的核心流量控制组件，通过节点边界实施粗粒度访问控制，为容器环境提供基础网络隔离保障。然而，用户常因安全组规则复杂性及配置方式不当导致服务不可访问，本文针对VPC-CNI 网络模式下TKE 集群中创建的两个原生节点里Pod 服务之间访问，通过引导用户分层逐步排查访问链路,最终掌握安全组配置的核心逻辑
+&emsp;安全组作为容器基础设施层的核心流量控制组件，通过节点边界实施粗粒度访问控制，为容器环境提供基础网络隔离保障。然而，用户常因安全组规则复杂性及配置方式不当导致服务不可访问，本文针对Global Router网络模式下TKE 集群中节点访问另一个原生节点里Pod 服务，通过引导用户分层逐步排查访问链路,最终掌握安全组配置的核心逻辑
 
 
 # 访问链路
@@ -23,36 +23,34 @@ TKE版本>=1.20.6
 **以terraform为例**<br>
  1.创建原生节点
 ```
-[root@VM-35-139-tlinux terraform]# sh create_node_tf.sh 
-[root@VM-35-139-tlinux terraform]# terraform apply -auto-approve
+[root@VM-35-20-tlinux terraform]# sh create_node_sg_tf.sh 
+[root@VM-35-20-tlinux terraform]# terraform apply -auto-approve
 ```
  2.创建pod服务并将其绑定在指定原生节点上
 ```
-[root@VM-35-139-tlinux terraform]# sh setup_podyaml.sh
-[root@VM-35-139-tlinux terraform]# kubectl apply -f pod.yaml
+[root@VM-35-20-tlinux terraform]# sh setup_podyaml.sh
+[root@VM-35-20-tlinux terraform]#kubectl apply -f pod.yaml
 ```
 
 # 演练分析
 ## 第一步:获取服务名与访问ip
-```
-[root@VM-35-139-tlinux terraform]# kubectl get pods -o wide|awk '{printf "podname:"$1"\t""pod_ip:"$6"\n"}'|grep -v "NAME"|grep -v IP
-podname:nginx-pod       pod_ip:10.0.35.23
+[root@VM-35-20-tlinux terraform]# kubectl get pods -o wide|awk '{print $6}'|grep -v IP
+172.17.0.131
 ```
 ## 第二步:问题分析
 ### 若访问时出现以下现象:
 ```
-[root@VM-35-139-tlinux terraform]# curl 10.0.35.150
-curl: (28) Failed to connect to 10.0.35.150 port 80: Connection timed out
+[root@VM-35-20-tlinux terraform]# 172.17.0.131
+curl: (28) Failed to connect to 172.17.0.131 port 80: Connection timed out
 ```
 排查方向:
 ```
 节点层面：出现这种情况一般为节点组网卡安全组配置问题，前往节点所绑定的安全组，查看其是否允许内网ip访问访问端口，如果未放通放通即可
-
 ```
 # 演练环境清理
 ```
-[root@VM-35-179-tlinux ~]# kubectl delete apply -f pod.yaml
-[root@VM-35-179-tlinux ~]# terraform destroy -auto-approve
+[root@VM-35-20-tlinux terraform]# kubectl delete apply -f pod.yaml
+[root@VM-35-20-tlinux terraform]# terraform destroy -auto-approve
 ```
 # 项目结构
 ```
