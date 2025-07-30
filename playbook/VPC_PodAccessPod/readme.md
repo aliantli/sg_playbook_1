@@ -28,7 +28,7 @@ TKE版本>=1.20.6
  2.创建两个pod访问并分别绑定在两个原生节点上
 
 ```
-[root@VM-35-139-tlinux terraform]# sh change_pod.sh
+[root@VM-35-139-tlinux terraform]# sh setup_podyaml.sh
 [root@VM-35-139-tlinux terraform]# kubectl apply -f pod.yaml
 ```
 
