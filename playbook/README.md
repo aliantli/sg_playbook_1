@@ -9,7 +9,7 @@
 | 场景            | 网络模式         | 连接方式         |节点类型 |访问方式|
 |----------------|----------------|----------------|------|--|
 | 场景1   | VPC-CNI   | 直连  |原生节点|[外网访问直连pod](https://github.com/aliantli/sg_playbook_1/tree/8a3f7303e28fdacd5ccf2d7caf6551613de86f01/playbook/VPV-CNI%E4%B8%8B%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83)|
-| 场景2  | VPC-CNI    | 非直连  |原生节点|外网访问非直连pod|
+| 场景2  | VPC-CNI    | 非直连  |原生节点|[外网访问非直连pod](https://github.com/aliantli/sg_playbook_1/tree/a96416699a9422738ce31be7fc9a9dd434b6ef0a/playbook/VPC-CNI%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83)|
 | 场景3  | VPC-CNI   | 直连   |超级节点|外网访问直连pod|
 | 场景4  | GlobalRouter  | 直连 |  原生节点|外网访问直连pod|
 | 场景5  | GlobalRouter  | 非直连|   原生节点|外网访问非直连pod|
