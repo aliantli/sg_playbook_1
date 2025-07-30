@@ -58,7 +58,7 @@ sg-xxxxxx            ##输出的为pod(辅助)网卡所绑定的安全组id
 sg-xxxxxx            ##同一集群内pod公用一个(辅助)网卡输出安全组为相同的
 ##查看其绑定的安全组是否允许内网ip访问服务端口如果未放通放通即可
 ```
-# 资源清理
+# 演练环境清理
 ```
 [root@VM-35-179-tlinux ~]# kubectl delete apply -f pod.yaml
 [root@VM-35-179-tlinux ~]# terraform destroy -auto-approve
