@@ -50,7 +50,7 @@ curl: (28) Failed to connect to 10.0.35.150 port 80: Connection timed out
 sg-xxxxxx            ##输出的为pod(辅助)网卡所绑定的安全组id
 ##查看其绑定的安全组是否允许内网ip访问服务端口如果未放通放通即可
 ```
-# 资源清理
+# 演练环境清理
 ```
 [root@VM-35-179-tlinux ~]# kubectl delete apply -f pod.yaml
 [root@VM-35-179-tlinux ~]# terraform destroy -auto-approve
