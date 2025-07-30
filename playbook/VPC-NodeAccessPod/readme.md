@@ -20,13 +20,14 @@ TKE版本>=1.20.6
 配置好[terraform:v1.8.2](https://developer.hashicorp.com/terraform)
 ## 快速开始
 **以terraform为例**<br>
- 1.创建两个原生节点
+ 1.创建原生节点
 ```
+[root@VM-35-139-tlinux terraform]# sh create_node_tf.sh 
 [root@VM-35-139-tlinux terraform]# terraform apply -auto-approve
 ```
  2.创建pod服务并将其绑定在指定原生节点上
 ```
-[root@VM-35-139-tlinux terraform]#  change_pod.sh
+[root@VM-35-139-tlinux terraform]# sh setup_podyaml.sh
 [root@VM-35-139-tlinux terraform]# kubectl apply -f pod.yaml
 ```
 
