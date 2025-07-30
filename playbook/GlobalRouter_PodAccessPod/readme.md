@@ -12,7 +12,7 @@
 
 TKE版本>=1.20.6
 <br>详情可参考:https://cloud.tencent.com/document/product/457/103981<br>
-网络模式:VPC-CNI<br>
+网络模式:GlobalRouter<br>
 详情可参考:https://cloud.tencent.com/document/product/457/50355
 
 **2:工具准备**
