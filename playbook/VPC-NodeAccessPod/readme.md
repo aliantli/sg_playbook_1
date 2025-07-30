@@ -60,7 +60,7 @@ sg-xxxxxx            ##输出的为pod(辅助)网卡所绑定的安全组id
 VPC-CNIr_NodeAccessPod/  
 ├── pod.yaml      # 创建pod并指定pod绑定到对应节点上
 ├── create_node_tf.sh   #配置tf文件脚本
-├── create_node_.template      #创建节点和安全组并给节点绑定安全组
+├── create_node_.template      #创建节点
 ├── readme.d        #本文件
 ├── setup_podyaml  #为pod指定节点
 ```
