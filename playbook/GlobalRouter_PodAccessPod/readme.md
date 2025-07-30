@@ -9,19 +9,19 @@
 
 # 环境部署
 ## 前提条件
-**1:tke集群要求**
+**1.tke集群要求**
 
 TKE版本>=1.20.6
 <br>详情可参考:https://cloud.tencent.com/document/product/457/103981<br>
 网络模式:GlobalRouter<br>
 详情可参考:https://cloud.tencent.com/document/product/457/50355
 
-**2:工具准备**
+**2.工具准备**
 
 配置好[terraform:v1.8.2](https://developer.hashicorp.com/terraform)
 ## 快速开始
 **以terraform为例**<br>
- 1.创建原生节点
+ 1.创建原生节点和安全组并将安全组绑定到节点上
 ```
 [root@VM-35-20-tlinux terraform]# sh create_node_sg_tf.sh 
 [root@VM-35-20-tlinux terraform]# terraform apply -auto-approve
