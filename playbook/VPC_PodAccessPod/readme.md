@@ -22,12 +22,13 @@ TKE版本>=1.20.6
 **以terraform为例**<br>
  1.创建两个原生节点
 ```
-[root@VM-35-139-tlinux terraform]# terraform apply 
+[root@VM-35-139-tlinux terraform]# terraform apply -auto-approve
 ```
  2.创建两个pod访问并分别绑定在两个原生节点上
 
 ```
-
+[root@VM-35-139-tlinux terraform]#  change_pod.sh
+[root@VM-35-139-tlinux terraform]# kubectl apply -f pod.yaml
 ```
 
 # 演练分析
