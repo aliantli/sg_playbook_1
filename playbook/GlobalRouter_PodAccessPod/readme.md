@@ -47,7 +47,7 @@ podname:nginx-pod2      pod_ip:172.17.0.194
 ## 第三步:问题分析
 ### 若访问时出现以下现象(time out):
 ```
-[root@VM-35-20-tlinux terraform]# 172.17.0.194
+# 172.17.0.194
 curl: (28) Failed to connect to 172.17.0.194 port 80: Connection timed out
 ```
 排查方向:
