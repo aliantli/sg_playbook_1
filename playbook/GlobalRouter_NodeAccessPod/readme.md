@@ -39,7 +39,7 @@ TKE版本>=1.20.6
 podname:nginx-pod       pod_ip:172.17.0.131
 ```
 ## 第二步:问题分析
-### 若访问时出现以下现象:
+### 若访问时出现以下现象(time out):
 ```
 [root@VM-35-20-tlinux terraform]# 172.17.0.131
 curl: (28) Failed to connect to 172.17.0.131 port 80: Connection timed out
