@@ -62,7 +62,7 @@ curl: (28) Failed to connect to 172.17.0.194 port 80: Connection timed out
 ```
 GlobalRouter_PodAccessPod/  
 ├── pod.yaml      # 创建pod并指定pod绑定到对应节点上
-├── create_node_tf.sh   #配置tf文件脚本
+├── create_node_sg_tf.sh   #配置tf文件脚本
 ├── create_node_sg.template      #创建节点和安全组并给节点绑定安全组
 ├── readme.d        #本文件
 ├── setup_podyaml  #为pod指定节点
