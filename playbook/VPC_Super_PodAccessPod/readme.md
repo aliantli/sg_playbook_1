@@ -42,11 +42,13 @@ podname:nginx-pod2      pod_ip:10.0.35.150
 ```
 ## 第二步:登录任意pod
 ```
+[root@VM-35-139-tlinux terraform]# kubectl exec -it nginx-pod -- sh
+#
 ```
 ## 第三步:问题分析
 ### 若访问时出现以下现象(time out):
 ```
-[root@VM-35-139-tlinux terraform]# curl 10.0.35.150
+# curl 10.0.35.150
 curl: (28) Failed to connect to 10.0.35.150 port 80: Connection timed out
 ```
 排查方向:
