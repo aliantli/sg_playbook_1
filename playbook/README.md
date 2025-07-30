@@ -16,6 +16,6 @@
 |场景6 |VPC-CNI|原生节点|pod与pod跨节点访问|
 |场景7 |VPC-CNI|原生节点|节点与pod跨节点访问|
 |场景8 |GlobalRouter |原生节点|pod与pod跨节点访问|
-|场景9 |GlobalRouter |原生节点|[节点与pod跨节点访问](https://github.com/aliantli/sg_playbook_1/tree/d63e171293d33985cf69627833ce561cc1daaea0/playbook/GlobalRouter_NodeAccessPod)|
+|场景9 |GlobalRouter |原生节点|[节点与pod跨节点访问](https://github.com/aliantli/sg_playbook_1/blob/f574c27c2b17e40e1117c678df4b66ea71b8086c/playbook/GlobalRouter_NodeAccessPod/readme.md)|
 |场景10 |VPC-CNI|超级节点|pod与pod跨节点访问|
 |场景11 |VPC-CNI|超级节点|节点与pod跨节点访问|
