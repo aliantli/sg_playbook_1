@@ -60,11 +60,12 @@ curl: (28) Failed to connect to 172.17.0.194 port 80: Connection timed out
 ```
 # 项目结构
 ```
-VPC-CNI下非直连外网访问pod安全组演练/  
+GlobalRouter_PodAccessPod/  
 ├── pod.yaml      # 创建pod并指定pod绑定到对应节点上
-├── create_no_sg_td.sh   #配置tf文件脚本
-├── node_sg.tf      #创建节点和安全组并给节点绑定安全组
+├── create_node_tf.sh   #配置tf文件脚本
+├── create_node_sg.template      #创建节点和安全组并给节点绑定安全组
 ├── readme.d        #本文件
+├── setup_podyaml  #为pod指定节点
 ```
 
 
