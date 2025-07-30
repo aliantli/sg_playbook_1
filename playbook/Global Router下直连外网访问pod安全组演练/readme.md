@@ -3,6 +3,7 @@
 
 
 # 访问链路
+Global Router下直连pod访问：
 [<img width="1538" height="425" alt="Clipboard_Screenshot_1753443225" src="https://github.com/user-attachments/assets/bd98a319-4f96-4898-8b13-6af7c7d3f1c6" />
 ](https://github.com/aliantli/sg_playbook_1/blob/89b3d4decfc37382097a19e809cce58272cc2492/playbook/Global%20Router%E4%B8%8B%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/image/flawchart.md)
 <br>&emsp;在日常生产环境中可以通过在上述两个位置是设置安全组来限制外网流量出入，以此控制入口流量的基础过滤，实现流量的精细管控，保障Pod资源安全
