@@ -3,7 +3,8 @@
 
 
 # 访问链路
-
+[<img width="1167" height="207" alt="Clipboard_Screenshot_1753863644" src="https://github.com/user-attachments/assets/69c5bbc0-f1c6-43eb-81c7-3701c64fef08" />
+](https://github.com/aliantli/sg_playbook_1/blob/b4321163973c19ea46461236d9e080c3272dce53/playbook/VPC-NodeAccessPod/image/flowchart.md)
  <br>&emsp;在日常生产环境中可以通过在上述三个位置是设置安全组来限制外网流量出入，以此控制入口流量的基础过滤，实现流量的精细管控，保障Pod资源安全(pod辅助网卡处的安全组默认关闭可根据自己需求开启)
 
 # 环境部署
