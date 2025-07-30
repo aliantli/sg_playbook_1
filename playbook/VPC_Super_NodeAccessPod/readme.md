@@ -5,7 +5,15 @@
 # 访问链路
 [<img width="1183" height="157" alt="Clipboard_Screenshot_1753866712" src="https://github.com/user-attachments/assets/f3920457-a799-4bec-9df0-2fb28ae1a83f" />](https://github.com/aliantli/sg_playbook_1/blob/bbc589b5be97c44a140677fb3b0cee192987d2f1/playbook/VPC_Super_NodeAccessPod/image/flowchart.md)
  <br>&emsp;在日常生产环境中可以通过在上述位置设置安全组来限制外网流量出入，以此控制入口流量的基础过滤，实现流量的精细管控，保障Pod资源安全(pod辅助网卡处的安全组默认关闭可根据自己需求开启)
-
+<br>**&emsp;安全组继承规则:**<br>
+|场景|是否为pod绑定安全组|是否为deployment绑定安全组|是否为节点绑定安全组|实际使用安全组|
+|:--:|:--:|:--:|:--:|:--:|
+|场景1|✓|✓|✓|pod处安全组|
+|场景2|✓||✓|pod处安全组|
+|场景3|✓|✓||pod处安全组|
+|场景4||✓|✓|deployment处安全组|
+|场景5|||✓|节点处安全组|
+|场景6||||所在地域ddefault安全组|
 # 环境部署
 ## 前提条件
 **1.tke集群要求**
