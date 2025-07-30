@@ -4,8 +4,9 @@
 
 
 # 访问链路
-
- <br>&emsp;在日常生产环境中可以通过在上述三个位置是设置安全组来限制外网流量出入，以此控制入口流量的基础过滤，实现流量的精细管控，保障Pod资源安全(pod辅助网卡处的安全组默认关闭可根据自己需求开启)
+[<img width="943" height="363" alt="Clipboard_Screenshot_1753863989" src="https://github.com/user-attachments/assets/7922299b-495f-4b77-98c9-873b249163de" />
+](https://github.com/aliantli/sg_playbook_1/blob/3ba9a33eff88df72639618a697dcfa8b7102ce29/playbook/GlobalRouter_NodeAccessPod/image/flowchart.md)
+ <br>&emsp;在日常生产环境中可以通过在上述位置是设置安全组来限制流量出入，以此控制入口流量的基础过滤，实现流量的精细管控，保障Pod资源安全(pod辅助网卡处的安全组默认关闭可根据自己需求开启)
 
 # 环境部署
 ## 前提条件
