@@ -21,7 +21,7 @@ TKE版本>=1.20.6
 配置好[terraform:v1.8.2](https://developer.hashicorp.com/terraform)
 ## 快速开始
 **以terraform为例**<br>
- 1.创建原生节点
+ 1.创建原生节点和安全组并将安全组绑定到节点上
 ```
 [root@VM-35-20-tlinux terraform]# sh create_node_sg_tf.sh 
 [root@VM-35-20-tlinux terraform]# terraform apply -auto-approve
