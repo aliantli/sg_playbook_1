@@ -33,6 +33,7 @@ TKE版本>=1.20.6
 
 # 演练分析
 ## 第一步:获取服务名与访问ip
+```
 [root@VM-35-20-tlinux terraform]# kubectl get pods -o wide|awk '{printf "podname:"$1"\t""pod_ip:"$6"\n"}'|grep -v "NAME"|grep -v IP
 podname:nginx-pod       pod_ip:172.17.0.131
 podname:nginx-pod2      pod_ip:172.17.0.194
