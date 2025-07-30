@@ -38,8 +38,12 @@ TKE版本>=1.20.6
 ```
 [root@VM-35-139-tlinux terraform]# kubectl get pods -o wide|awk '{printf "podname:"$1"\t""pod_ip:"$6"\n"}'|grep -v "NAME"|grep -v IP
 podname:nginx-pod       pod_ip:10.0.35.23
+podname:nginx-pod2      pod_ip:10.0.35.150
 ```
-## 第二步:问题分析
+## 第二步:登录任意pod
+```
+```
+## 第三步:问题分析
 ### 若访问时出现以下现象(time out):
 ```
 [root@VM-35-139-tlinux terraform]# curl 10.0.35.150
