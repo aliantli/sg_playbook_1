@@ -32,14 +32,18 @@ TKE版本>=1.20.6
 ```
 
 # 演练分析
-## 第一步:获取服务公网访问ip
+## 第一步:获取服务名与访问ip
 ```
-[root@VM-35-179-tlinux ~]# kubectl get service -o wide
-NAME         TYPE           CLUSTER-IP      EXTERNAL-IP      PORT(S)        AGE     SELECTOR
-kubernetes   ClusterIP      172.16.0.1      <none>           443/TCP        4h22m   <none>
-nginx        LoadBalancer   172.16.60.200   119.91.244.213   80:30713/TCP   156m    app=nginx
+[root@VM-35-139-tlinux terraform]# kubectl get pods -o wide|awk '{printf "podname:"$1"\t""pod_ip:"$6"\n"}'|grep -v "NAME"|grep -v IP
+podname:nginx-pod       pod_ip:10.0.35.23
+podname:nginx-pod2      pod_ip:10.0.35.150
 ```
-## 第二步:问题分析
+## 第二步:登录任意pod
+```
+[root@VM-35-139-tlinux terraform]# kubectl exec -it nginx-pod -- sh
+#
+```
+## 第三步:问题分析
 ### 若访问时出现以下现象:
 ```
 # curl 10.0.35.150
@@ -50,21 +54,19 @@ curl: (28) Failed to connect to 10.0.35.150 port 80: Connection timed out
 ##出现这种情况可能为pod辅助网卡安全组被开启且安全组配置不正确
 [root@VM-35-179-tlinux ~]# kubectl logs -n kube-system deploy/tke-eni-ipamd | grep "Event"|grep "security groups from"|awk '{print $24}'|awk -F'[' '{print $2}'|awk -F']' '{print $1}'                            ##查询其所绑定的安全组
 sg-xxxxxx            ##输出的为pod(辅助)网卡所绑定的安全组id
+sg-xxxxxx            ##同一集群内pod公用一个(辅助)网卡输出安全组为相同的
 ##查看其绑定的安全组是否允许内网ip访问服务端口如果未放通放通即可
 ```
 # 资源清理
 ```
-[root@VM-35-179-tlinux ~]# kubectl delete apply -f addservice.yaml
-[root@VM-35-179-tlinux ~]# kubectl delete apply -f deployment.yaml
+[root@VM-35-179-tlinux ~]# kubectl delete apply -f pod.yaml
 [root@VM-35-179-tlinux ~]# terraform destroy -auto-approve
 ```
 # 项目结构
 ```
 VPC-CNI下非直连外网访问pod安全组演练/  
-├── addservice.yaml      # 配置service并为clb绑定安全组
+├── pod.yaml      # 创建pod并指定pod绑定到对应节点上
 ├── create_no_sg_td.sh   #配置tf文件脚本
-├──deploy_service.sh     #配置服务yaml文件脚本
-├── deployment.yaml    #部署deployment
 ├── node_sg.tf      #创建节点和安全组并给节点绑定安全组
 ├── readme.d        #本文件
 ```
