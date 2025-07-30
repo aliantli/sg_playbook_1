@@ -5,7 +5,7 @@ metadata:
   labels:
     app: nginx
 spec:
-  nodeName: <pod_ip1>  # 直接指定节点名称（需精确匹配）
+  nodeName: <node_ip1>  # 直接指定节点名称（需精确匹配）
   containers:
   - name: nginx
     image: nginx:1.21
