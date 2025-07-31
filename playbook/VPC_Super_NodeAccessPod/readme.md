@@ -6,12 +6,12 @@
 VPC-CNI下非超级节点与超级节点内pod跨节点访问:<br>
 [<img width="837" height="428" alt="Clipboard_Screenshot_1753950858" src="https://github.com/user-attachments/assets/462520f7-e106-434d-8d34-88f3e8da073e" />
 ](https://github.com/aliantli/sg_playbook_1/blob/897b473aad9f1198142f71b0e334c23a1630c603/playbook/VPC_Super_NodeAccessPod/image/flowchart.md)
- <br>&emsp;在日常生产环境中可以通过在上述位置设置安全组来限制外网流量出入，以此控制入口流量的基础过滤，实现流量的精细管控，保障Pod资源安全(pod辅助网卡处的安全组默认关闭可根据自己需求开启)
+ <br>&emsp;在日常生产环境中可以通过在上述位置设置安全组来限制外网流量出入，以此控制入口流量的基础过滤，实现流量的精细管控，保障Pod资源安全
 <br>**&emsp;安全组继承规则:**<br>
 |场景|是否为工作负载绑定安全组|是否为节点绑定安全组|实际使用安全组|
 |:--:|:--:|:--:|:--:|
-|场景1|✓|✓|工作负载处安全组|
-|场景5||✓|节点处安全组|
+|场景1|✓|✓|工作负载所绑定安全组|
+|场景5||✓|节点所绑定安全组|
 |场景6|||所在地域ddefault安全组|
 # 环境部署
 ## 前提条件
@@ -60,10 +60,8 @@ curl: (28) Failed to connect to 10.0.35.23 port 80: Connection timed out
 ```
 排查方向:
 ```
-##出现这种情况可能为pod辅助网卡安全组被开启且安全组配置不正确
-[root@VM-35-179-tlinux ~]# kubectl logs -n kube-system deploy/tke-eni-ipamd | grep "Event"|grep "security groups from"|awk '{print $24}'|awk -F'[' '{print $2}'|awk -F']' '{print $1}'                            ##查询其所绑定的安全组
-sg-xxxxxx            ##输出的为pod(辅助)网卡所绑定的安全组id
-##查看其绑定的安全组是否允许内网ip访问服务端口如果未放通放通即可
+##出现这种情况可能为pod所绑定安全组配置不正确
+根据上述安全组继承规则查看pod所绑定的安全组是否允许内网ip访问pod访问端口
 ```
 # 演练环境清理
 ```
