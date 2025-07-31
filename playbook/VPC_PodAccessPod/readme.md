@@ -6,7 +6,7 @@
 VPC-CNI下pod与pod跨节点访问:<br>
 [<img width="633" height="373" alt="Clipboard_Screenshot_1753948754" src="https://github.com/user-attachments/assets/b978f71e-2d11-46af-bfe5-b73a3b44b06f" />
 ](https://github.com/aliantli/sg_playbook_1/blob/a56436ec79e7fe4b2929cdb7735a9514bfa96c88/playbook/VPC_PodAccessPod/image/flowchart.md)
- <br>&emsp;在日常生产环境中可以通过在上述位置设置安全组来限制外网流量出入(一般不限制出站流量)，以此控制入口流量的基础过滤，实现流量的精细管控，保障Pod资源安全(pod辅助网卡处的安全组默认关闭可根据自己需求开启)
+ <br>&emsp;在日常生产环境中可以通过在上述位置设置安全组来限制外网流量出入(安全组1位置一般不做限制)，以此控制入口流量的基础过滤，实现流量的精细管控，保障Pod资源安全(pod辅助网卡处的安全组默认关闭可根据自己需求开启)
 
 # 环境部署
 ## 前提条件
