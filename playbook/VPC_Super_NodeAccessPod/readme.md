@@ -27,12 +27,12 @@ TKE版本>=1.20.6
 配置好[terraform:v1.8.2](https://developer.hashicorp.com/terraform)
 ## 快速开始
 **以terraform为例**<br>
- 1.创建超级节点
+ 1.创建一个超级节点和一个原生节点
 ```
 [root@VM-35-139-tlinux terraform]# sh create_super_node_tf.sh 
 [root@VM-35-139-tlinux terraform]# terraform apply -auto-approve
 ```
- 2.创建deployment服务并将其绑定在指定超级节点上
+ 2.创建deployment服务并将其绑定在超级节点上
 ```
 [root@VM-35-139-tlinux terraform]# sh setup_deploy_yaml.sh
 [root@VM-35-139-tlinux terraform]# kubectl apply -f deployment.yaml
@@ -41,9 +41,10 @@ TKE版本>=1.20.6
 # 演练分析
 ## 第一步:获取服务名与访问ip
 ```
-[root@VM-35-139-tlinux terraform]# kubectl get pods -o wide|awk '{printf "podname:"$1"\t""pod_ip:"$6"\n"}'|grep -v "NAME"|grep -v IP
+[root@VM-35-139-tlinux terraform]# kubectl get pods -o wide -l app=nginx-super1|awk '{printf "podname:"$1"\t""pod_ip:"$6"\n"}'|grep -v "NAME"|grep -v IP|
 podname:nginx-pod       pod_ip:10.0.35.23
 ```
+
 ## 第二步:问题分析
 ### 若访问时出现以下现象(time out):
 ```
