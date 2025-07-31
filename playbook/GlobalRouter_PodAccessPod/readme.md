@@ -29,8 +29,8 @@ TKE版本>=1.20.6
 ```
  2.创建pod服务并将其绑定在指定原生节点上
 ```
-[root@VM-35-20-tlinux terraform]# sh setup_podyaml.sh
-[root@VM-35-20-tlinux terraform]#kubectl apply -f pod.yaml
+[root@VM-35-20-tlinux terraform]# sh setup_deploy_yaml.sh
+[root@VM-35-20-tlinux terraform]#kubectl apply -f deployment.yaml
 ```
 
 # 演练分析
@@ -57,17 +57,17 @@ curl: (28) Failed to connect to 172.17.0.194 port 80: Connection timed out
 ```
 # 演练环境清理
 ```
-[root@VM-35-20-tlinux terraform]# kubectl delete apply -f pod.yaml
+[root@VM-35-20-tlinux terraform]# kubectl delete apply -f deployment.yaml
 [root@VM-35-20-tlinux terraform]# terraform destroy -auto-approve
 ```
 # 项目结构
 ```
 GlobalRouter_PodAccessPod/  
-├── pod.yaml      # 创建pod并指定pod绑定到对应节点上
+├── deployment.yaml      # 创建deployment并指定deployment绑定到对应节点上
 ├── create_node_sg_tf.sh   #配置tf文件脚本
 ├── create_node_sg.template      #创建节点和安全组并给节点绑定安全组
 ├── readme.d        #本文件
-├── setup_podyaml  #为pod指定节点
+├── setup_deploy_yaml  #为deployment指定节点
 ```
 
 
