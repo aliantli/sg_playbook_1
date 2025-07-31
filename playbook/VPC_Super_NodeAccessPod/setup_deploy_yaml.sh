@@ -1,2 +1,2 @@
-IP1=`kubectl get nodes -l lable=values -o jsonpath='{.items[*].metadata.name}'
+IP1=`kubectl get nodes -l lable1=value1 -o jsonpath='{.items[*].metadata.name}'
 sed -i 's/<node_ip1>/$IP1/g' deployment.yaml
