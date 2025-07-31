@@ -41,7 +41,7 @@ podname:nginx-pod       pod_ip:10.0.35.23
 ```
 ## 第二步:获取未绑定服务的节点ip并登录
 ```
-[root@VM-35-139-tlinux terraform]#kubectl get nodes -o wide -l test11=test21 |awk '{print $6}'|grep -v INTERNAL-IP|tail -1
+[root@VM-35-139-tlinux terraform]#IP1=`kubectl get nodes -l test11=test21 -o jsonpath='{.items[*].metadata.name}'|awk '{print $2}'
 10.0.35.192
 [root@VM-35-139-tlinux terraform]# ssh 10.0.35.192
 [root@VM-35-192-tlinux ～] #
