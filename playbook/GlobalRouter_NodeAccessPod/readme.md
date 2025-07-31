@@ -39,6 +39,13 @@ TKE版本>=1.20.6
 [root@VM-35-20-tlinux terraform]# kubectl get pods -o wide|awk '{printf "podname:"$1"\t""pod_ip:"$6"\n"}'|grep -v "NAME"|grep -v IP
 podname:nginx-pod       pod_ip:172.17.0.131
 ```
+## 第二步:获取未绑定服务的节点
+```
+[root@VM-35-139-tlinux terraform]#IP1=`kubectl get nodes -l test11=test21 -o jsonpath='{.items[*].metadata.name}'|awk '{print $2}'
+10.0.35.192
+[root@VM-35-139-tlinux terraform]# ssh 10.0.35.192
+[root@VM-35-192-tlinux ～] #
+```
 ## 第二步:问题分析
 ### 若访问时出现以下现象(time out):
 ```
