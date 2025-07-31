@@ -46,7 +46,7 @@ podname:nginx-pod       pod_ip:172.17.0.131
 [root@VM-35-139-tlinux terraform]# ssh 10.0.35.192
 [root@VM-35-192-tlinux ～] #
 ```
-## 第二步:问题分析
+## 第三步:问题分析
 ### 若访问时出现以下现象(time out):
 ```
 [root@VM-35-20-tlinux terraform]# 172.17.0.131
