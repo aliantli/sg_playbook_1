@@ -37,8 +37,9 @@ TKE版本>=1.20.6
 # 演练分析
 ## 第一步:获取服务名与访问ip
 ```
-[root@VM-35-139-tlinux terraform]# kubectl get pods -o wide|awk '{printf "podname:"$1"\t""pod_ip:"$6"\n"}'|grep -v "NAME"|grep -v IP
+[root@VM-35-139-tlinux terraform]# kubectl get pods -o wide -l app=nginx1|awk '{printf "podname:"$1"\t""pod_ip:"$6"\n"}'|grep -v "NAME"|grep -v IP
 podname:nginx-pod       pod_ip:10.0.35.23
+[root@VM-35-139-tlinux terraform]# kubectl get pods -o wide -l app=nginx2|awk '{printf "podname:"$1"\t""pod_ip:"$6"\n"}'|grep -v "NAME"|grep -v IP
 podname:nginx-pod2      pod_ip:10.0.35.150
 ```
 ## 第二步:登录任意pod
@@ -58,7 +59,7 @@ curl: (28) Failed to connect to 10.0.35.150 port 80: Connection timed out
 [root@VM-35-179-tlinux ~]# kubectl logs -n kube-system deploy/tke-eni-ipamd | grep "Event"|grep "security groups from"|awk '{print $24}'|awk -F'[' '{print $2}'|awk -F']' '{print $1}'                            ##查询其所绑定的安全组
 sg-xxxxxx            ##输出的为pod(辅助)网卡所绑定的安全组id
 sg-xxxxxx            ##同一集群内pod公用一个(辅助)网卡输出安全组为相同的
-##查看其绑定的安全组是否允许内网ip访问服务端口如果未放通放通即可
+##查看其绑定的安全组是否允许来源ip访问服务端口如果未放通放通即可
 ```
 # 演练环境清理
 ```
