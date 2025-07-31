@@ -3,19 +3,16 @@
 
 
 # 访问链路
-VPC-CNi下节点与pod跨节点访问:<br>
-[<img width="745" height="137" alt="Clipboard_Screenshot_1753881037" src="https://github.com/user-attachments/assets/8d6a3870-02f1-4fb5-adbf-780ddb2df6f3" />
-](https://github.com/aliantli/sg_playbook_1/blob/e559153172fc01db5d98212d054a14680e5b464c/playbook/VPC_Super_NodeAccessPod/image/flowchart.md)
+VPC-CNI下非超级节点与超级节点内pod跨节点访问:<br>
+[<img width="837" height="428" alt="Clipboard_Screenshot_1753950858" src="https://github.com/user-attachments/assets/462520f7-e106-434d-8d34-88f3e8da073e" />
+](https://github.com/aliantli/sg_playbook_1/blob/897b473aad9f1198142f71b0e334c23a1630c603/playbook/VPC_Super_NodeAccessPod/image/flowchart.md)
  <br>&emsp;在日常生产环境中可以通过在上述位置设置安全组来限制外网流量出入，以此控制入口流量的基础过滤，实现流量的精细管控，保障Pod资源安全(pod辅助网卡处的安全组默认关闭可根据自己需求开启)
 <br>**&emsp;安全组继承规则:**<br>
-|场景|是否为pod绑定安全组|是否为deployment绑定安全组|是否为节点绑定安全组|实际使用安全组|
-|:--:|:--:|:--:|:--:|:--:|
-|场景1|✓|✓|✓|pod处安全组|
-|场景2|✓||✓|pod处安全组|
-|场景3|✓|✓||pod处安全组|
-|场景4||✓|✓|deployment处安全组|
-|场景5|||✓|节点处安全组|
-|场景6||||所在地域ddefault安全组|
+|场景|是否为工作负载绑定安全组|是否为节点绑定安全组|实际使用安全组|
+|:--:|:--:|:--:|:--:|
+|场景1|✓|✓|工作负载处安全组|
+|场景5||✓|节点处安全组|
+|场景6|||所在地域ddefault安全组|
 # 环境部署
 ## 前提条件
 **1.tke集群要求**
