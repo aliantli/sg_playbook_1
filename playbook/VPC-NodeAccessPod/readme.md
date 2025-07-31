@@ -39,10 +39,15 @@ TKE版本>=1.20.6
 [root@VM-35-139-tlinux terraform]# kubectl get pods -o wide -l app=my-app|awk '{printf "podname:"$1"\t""pod_ip:"$6"\n"}'|grep -v "NAME"|grep -v IP
 podname:nginx-pod       pod_ip:10.0.35.23
 ```
-## 第二步:问题分析
+## 第二步:获取登录节点ip
+```
+[root@VM-35-139-tlinux terraform]#kubectl get nodes -o wide -l test11=test21 |awk '{print $6}'|grep -v INTERNAL-IP|tail -1
+10.0.35.192
+```
+## 第三步:问题分析
 ### 若访问时出现以下现象(time out):
 ```
-[root@VM-35-139-tlinux terraform]# curl 10.0.35.150
+[root@VM-35-192-tlinux ~]# curl 10.0.35.150
 curl: (28) Failed to connect to 10.0.35.150 port 80: Connection timed out
 ```
 排查方向:
