@@ -6,7 +6,6 @@ resource "tencentcloud_security_group" "baseline_sg" {
   }
 }
 
-# 显式拒绝所有入站（默认拒绝，此规则可省略但明确声明更清晰）
 resource "tencentcloud_security_group_rule" "deny_ingress" {
   security_group_id = tencentcloud_security_group.baseline_sg.id
   type              = "ingress"
