@@ -30,8 +30,8 @@ TKE版本>=1.20.6
  2.创建两个pod访问并分别绑定在两个原生节点上
 
 ```
-[root@VM-35-139-tlinux terraform]# sh setup_podyaml.sh
-[root@VM-35-139-tlinux terraform]# kubectl apply -f pod.yaml
+[root@VM-35-139-tlinux terraform]# sh setup_deploy_yaml.sh
+[root@VM-35-139-tlinux terraform]# kubectl apply -f deployment.yaml
 ```
 
 # 演练分析
@@ -62,7 +62,7 @@ sg-xxxxxx            ##同一集群内pod公用一个(辅助)网卡输出安全�
 ```
 # 演练环境清理
 ```
-[root@VM-35-179-tlinux ~]# kubectl delete apply -f pod.yaml
+[root@VM-35-179-tlinux ~]# kubectl delete apply -f deployment.yaml
 [root@VM-35-179-tlinux ~]# terraform destroy -auto-approve
 ```
 # 项目结构
