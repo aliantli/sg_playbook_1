@@ -25,21 +25,21 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-deployment
+  name: my-deployment2
 spec:
   replicas: 1  # 支持多副本
   selector:
     matchLabels:
-      app: my-app
+      app: my-app2
   template:
     metadata:
       labels:
-        app: my-app
+        app: my-app2
     spec:
     nodeSelector:
         node.kubernetes.io/instance-type:  <node_ip2>
       containers:
-      - name: nginx
+      - name: nginx2
         image: nginx:latest
         ports:
         - containerPort: 80
