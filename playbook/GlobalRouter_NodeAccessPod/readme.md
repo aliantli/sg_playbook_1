@@ -36,7 +36,7 @@ TKE版本>=1.20.6
 # 演练分析
 ## 第一步:获取服务名与访问ip
 ```
-[root@VM-35-20-tlinux terraform]# kubectl get pods -o wide|awk '{printf "podname:"$1"\t""pod_ip:"$6"\n"}'|grep -v "NAME"|grep -v IP
+[root@VM-35-20-tlinux terraform]# kubectl get pods -o wide -l app=my-app|awk '{printf "podname:"$1"\t""pod_ip:"$6"\n"}'|grep -v "NAME"|grep -v IP
 podname:nginx-pod       pod_ip:172.17.0.131
 ```
 ## 第二步:获取未绑定服务的节点
