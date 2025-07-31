@@ -68,10 +68,10 @@ sg-xxxxxx            ##同一集群内pod公用一个(辅助)网卡输出安全�
 # 项目结构
 ```
 VPC-CNIr_PodAccessPod/  
-├── pod.yaml      # 创建pod并指定pod绑定到对应节点上
+├── deployment.yaml      # 创建deployment并指定deployment绑定到对应节点上
 ├── create_node_tf.sh   #配置tf文件脚本
 ├── create_node_.template      #创建节点
 ├── readme.d        #本文件
-├── setup_podyaml  #为pod指定节点
+├── setup_deploy_yaml  #为deployment指定节点
 ```
 
