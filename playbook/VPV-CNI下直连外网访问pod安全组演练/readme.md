@@ -4,8 +4,8 @@
 
 # 访问链路
 VPC-CNI下clb直连pod访问:<br>
-[<img width="551" height="188" alt="Clipboard_Screenshot_1753877279" src="https://github.com/user-attachments/assets/79d492d2-f6a6-465a-9d27-a98fd70a1aab" />
-](https://github.com/aliantli/sg_playbook_1/blob/c3d244697b33a6c41abd97f4f4dd43fb0287f2cd/playbook/VPV-CNI%E4%B8%8B%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/image/flowchart.md)
+[<img width="576" height="224" alt="Clipboard_Screenshot_1753947859" src="https://github.com/user-attachments/assets/44c3bbb8-c96b-4876-83f8-4498452331ae" />
+](https://github.com/aliantli/sg_playbook_1/blob/c47e12a735722442bde33e0196e87357658fec9c/playbook/VPV-CNI%E4%B8%8B%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/image/flowchart.md)
 
 
 <br>&emsp;在日常生产环境中可以通过在上述两个位置是设置安全组来限制外网流量出入，以此控制入口流量的基础过滤，实现流量的精细管控，保障Pod资源安全(pod(辅助)网卡处的安全组默认关闭可根据自己需求开启)
@@ -23,7 +23,7 @@ TKE版本>=1.20.6
 集群内配置好[terraform:v1.8.2](https://developer.hashicorp.com/terraform)
 ## 快速开始
 
-**以terraform为例**
+**以terraform为例**<br>
  1.创建节点与安全组并为节点绑定安全组
 ```
 [root@VM-35-179-tlinux ~]# sh crete_no_sg_tf.sh
