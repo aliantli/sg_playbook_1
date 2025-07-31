@@ -61,7 +61,7 @@ curl: (28) Failed to connect to 10.0.35.150 port 80: Connection timed out
 排查方向:
 ```
 ##出现这种情况可能为pod所绑定安全组配置不正确
-根据上述安全组继承规则查看pod所绑定的安全组是否允许内网ip访问pod访问端口
+根据上述安全组继承规则查看pod所绑定的安全组是否允许来源ip访问pod访问端口
 ```
 # 演练环境清理
 ```
