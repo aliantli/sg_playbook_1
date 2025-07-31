@@ -6,7 +6,7 @@
 Global Router下pod与pod跨节点访问:<br>
 [<img width="535" height="316" alt="Clipboard_Screenshot_1753962332" src="https://github.com/user-attachments/assets/93305cbb-3edd-4c0d-957e-e4a1c249b44f" />
 ](https://github.com/aliantli/sg_playbook_1/blob/2df187fa466ca32fe225cdae6c3735b3e41af0ea/playbook/GlobalRouter_PodAccessPod/image/flowchart2.md)
- <br>&emsp;在日常生产环境中可以通过在安全组2位置设置规则来限制流量出入(安全组1位置一般不做限制)，以此控制入口流量的基础过滤，实现流量的精细管控，保障Pod资源安全
+ <br>&emsp;在日常生产环境中可以通过在上述两处安全组位置设置规则来限制流量入站(一般对流量出站不做限制)，以此控制入口流量的基础过滤，实现流量的精细管控，保障Pod资源安全
 
 # 环境部署
 ## 前提条件
