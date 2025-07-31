@@ -5,9 +5,9 @@
 
 # 访问链路
 Global Router下节点与pod跨节点访问:<br>
-[<img width="609" height="249" alt="Clipboard_Screenshot_1753878251" src="https://github.com/user-attachments/assets/02edaeb8-6a6a-4b11-a5be-e31dfaae31f2" />
-](https://github.com/aliantli/sg_playbook_1/blob/7afac15b3461b4dbea0ef14d115a7b26a03f1fc5/playbook/GlobalRouter_NodeAccessPod/image/flowchart.md)
- <br>&emsp;在日常生产环境中可以通过在上述位置是设置安全组来限制流量出入，以此控制入口流量的基础过滤，实现流量的精细管控，保障Pod资源安全
+[<img width="702" height="378" alt="Clipboard_Screenshot_1753945920" src="https://github.com/user-attachments/assets/fb22816b-aa10-4a24-9c81-2a959dc5a048" />
+](https://github.com/aliantli/sg_playbook_1/blob/863b2efa3496eee52044f4cff2ec190373ffa26b/playbook/GlobalRouter_NodeAccessPod/image/flowchart.md)
+ <br>&emsp;在日常生产环境中可以通过在上述位置是设置安全组来限制流量出入，以此控制入口流量的基础过滤，实现流量的精细管控，保障Pod资源安全(一般不限制出口流量)
 # 环境部署
 ## 前提条件
 **1.tke集群要求**
