@@ -4,19 +4,16 @@
 
 
 # 访问链路
-VPC-CNI下pod与pod快节点访问:<br>
-[<img width="785" height="165" alt="Clipboard_Screenshot_1753880522" src="https://github.com/user-attachments/assets/a00da3d3-789c-4b35-ac10-6c794eacfe95" />
-](https://github.com/aliantli/sg_playbook_1/blob/ebe3a462657ba6e11ebad288b02e41656488c35a/playbook/VPC_Super_PodAccessPod/image/flowchart1.md)
+VPC-CNI超级节点下pod与pod跨节点访问:<br>
+[<img width="602" height="368" alt="Clipboard_Screenshot_1753950301" src="https://github.com/user-attachments/assets/17579eb6-a884-4612-9d28-3b25465578e2" />
+](https://github.com/aliantli/sg_playbook_1/blob/707ca4acc7628cdbb956b8cc3bffdcbd2ac9afa9/playbook/VPC_Super_PodAccessPod/image/flowchart2.md)
  <br>&emsp;在日常生产环境中可以通过在上述位置设置安全组来限制流量出入，以此控制入口流量的基础过滤，实现流量的精细管控，保障Pod资源安全(pod辅助网卡处的安全组默认关闭可根据自己需求开启)
 <br>**&emsp;安全组继承规则:**<br>
-|场景|是否为pod绑定安全组|是否为deployment绑定安全组|是否为节点绑定安全组|实际使用安全组|
-|:--:|:--:|:--:|:--:|:--:|
-|场景1|✓|✓|✓|pod处安全组|
-|场景2|✓||✓|pod处安全组|
-|场景3|✓|✓||pod处安全组|
-|场景4||✓|✓|deployment处安全组|
-|场景5|||✓|节点处安全组|
-|场景6||||所在地域ddefault安全组|
+|场景|是否为工作负载绑定安全组|是否为节点绑定安全组|实际使用安全组|
+|:--:|:--:|:--:|:--:|
+|场景1|✓|✓|工作负载处安全组|
+|场景5||✓|节点处安全组|
+|场景6|||所在地域ddefault安全组|
 # 环境部署
 ## 前提条件
 **1.tke集群要求**
@@ -31,15 +28,15 @@ TKE版本>=1.20.6
 配置好[terraform:v1.8.2](https://developer.hashicorp.com/terraform)
 ## 快速开始
 **以terraform为例**<br>
- 1.创建原生节点
+ 1.创建超级节点
 ```
 [root@VM-35-139-tlinux terraform]# sh create_super_node_tf.sh 
 [root@VM-35-139-tlinux terraform]# terraform apply -auto-approve
 ```
- 2.创建pod服务并将其绑定在指定原生节点上
+ 2.创建两个deployment并将其绑定在指定超级节点上
 ```
-[root@VM-35-139-tlinux terraform]# sh setup_podyaml.sh
-[root@VM-35-139-tlinux terraform]# kubectl apply -f pod.yaml
+[root@VM-35-139-tlinux terraform]# sh setup_deploy_yaml.sh
+[root@VM-35-139-tlinux terraform]# kubectl apply -f deployment.yaml
 ```
 
 # 演练分析
@@ -69,17 +66,17 @@ sg-xxxxxx            ##输出的为pod(辅助)网卡所绑定的安全组id
 ```
 # 演练环境清理
 ```
-[root@VM-35-179-tlinux ~]# kubectl delete apply -f pod.yaml
+[root@VM-35-179-tlinux ~]# kubectl delete apply -f deployment.yaml
 [root@VM-35-179-tlinux ~]# terraform destroy -auto-approve
 ```
 # 项目结构
 ```
 VPC-CNIr_NodeAccessPod/  
-├── pod.yaml      # 创建pod并指定pod绑定到对应节点上
+├── deployment.yaml      # 创建deployment并指定deployment绑定到对应节点上
 ├── create_node_tf.sh   #配置tf文件脚本
 ├── create_node_.template      #创建节点
 ├── readme.d        #本文件
-├── setup_podyaml  #为pod指定节点
+├── setup_deploy_yaml  #为deployment指定节点
 ```
 
 
