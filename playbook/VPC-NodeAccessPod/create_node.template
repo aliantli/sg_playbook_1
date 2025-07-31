@@ -13,7 +13,7 @@ resource "tencentcloud_security_group_rule" "deny_ingress" {
   cidr_ip           = "0.0.0.0/0"
   ip_protocol       = "22"
   policy            = "ACCEPT"     # 丢弃所有入站
-  description       = "拒绝所有入站流量"
+  description       = "仅放通22端口"
 }
 
 resource "tencentcloud_security_group_rule" "allow_egress" {
