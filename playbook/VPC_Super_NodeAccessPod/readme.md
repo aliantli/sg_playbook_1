@@ -27,12 +27,12 @@ TKE版本>=1.20.6
 配置好[terraform:v1.8.2](https://developer.hashicorp.com/terraform)
 ## 快速开始
 **以terraform为例**<br>
- 1.创建一个超级节点和一个原生节点
+ 1.创建超级节点和原生节点各一个并为其绑定安全组
 ```
 [root@VM-35-139-tlinux terraform]# sh create_super_node_tf.sh 
 [root@VM-35-139-tlinux terraform]# terraform apply -auto-approve
 ```
- 2.创建deployment服务并将其绑定在超级节点上
+ 2.创建deployment并将其绑定在超级节点上
 ```
 [root@VM-35-139-tlinux terraform]# sh setup_deploy_yaml.sh
 [root@VM-35-139-tlinux terraform]# kubectl apply -f deployment.yaml
