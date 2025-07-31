@@ -27,7 +27,7 @@ TKE版本>=1.20.6
 [root@VM-35-20-tlinux terraform]# sh create_node_sg_tf.sh 
 [root@VM-35-20-tlinux terraform]# terraform apply -auto-approve
 ```
- 2.创建pod服务并将其绑定在指定原生节点上
+ 2.创建deployment并将其绑定在指定原生节点上
 ```
 [root@VM-35-20-tlinux terraform]# sh setup_deploy_yaml.sh
 [root@VM-35-20-tlinux terraform]#kubectl apply -f deployment.yaml
