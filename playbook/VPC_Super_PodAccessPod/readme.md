@@ -7,7 +7,7 @@
 VPC-CNI超级节点下pod与pod跨节点访问:<br>
 [<img width="602" height="368" alt="Clipboard_Screenshot_1753950301" src="https://github.com/user-attachments/assets/17579eb6-a884-4612-9d28-3b25465578e2" />
 ](https://github.com/aliantli/sg_playbook_1/blob/707ca4acc7628cdbb956b8cc3bffdcbd2ac9afa9/playbook/VPC_Super_PodAccessPod/image/flowchart2.md)
- <br>&emsp;在日常生产环境中可以通过在安全组2位置设置安全组来限制流量出入，安全组1处默认放通，以此控制入口流量的基础过滤，实现流量的精细管控，保障Pod资源安全
+ <br>&emsp;在日常生产环境中可以通过在安全组2位置设置规则来限制流量出入，以此控制入口流量的基础过滤，实现流量的精细管控，保障Pod资源安全
 <br>**&emsp;安全组继承规则:**<br>
 |场景|是否为工作负载绑定安全组|是否为节点绑定安全组|实际使用安全组|
 |:--:|:--:|:--:|:--:|
