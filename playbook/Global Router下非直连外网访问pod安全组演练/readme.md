@@ -5,8 +5,8 @@
 
 # 访问链路
 Global Router下clb非直连pod访问:<br>
-[<img width="693" height="273" alt="Clipboard_Screenshot_1753876074" src="https://github.com/user-attachments/assets/68d30577-8239-49f4-a942-08067dac853c" />
-](https://github.com/aliantli/sg_playbook_1/blob/0c16a1021622543daa8a7fde8848ad175e00f7c5/playbook/Global%20Router%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/image/flowchart.md)
+[<img width="767" height="382" alt="Clipboard_Screenshot_1753945050" src="https://github.com/user-attachments/assets/7c5c5580-49a7-4b8e-a857-fcc52283c1df" />
+](https://github.com/aliantli/sg_playbook_1/blob/10d011f8b4f18dce47489b54b5ad4708c8f236c7/playbook/Global%20Router%E4%B8%8B%E9%9D%9E%E7%9B%B4%E8%BF%9E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEpod%E5%AE%89%E5%85%A8%E7%BB%84%E6%BC%94%E7%BB%83/image/flowchart.md)
 <br>&emsp;在日常生产环境中可以通过在上述两个位置是设置安全组来限制外网流量出入，以此控制入口流量的基础过滤，实现流量的精细管控，保障Pod资源安全
 # 环境部署
 ## 前提条件
