@@ -1,3 +1,21 @@
+# 显式拒绝所有入站（默认拒绝，此规则可省略但明确声明更清晰）
+resource "tencentcloud_security_group_rule" "deny_ingress" {
+  security_group_id = tencentcloud_security_group.baseline_sg.id
+  type              = "ingress"
+  cidr_ip           = "0.0.0.0/0"
+  ip_protocol       = "ALL"
+  policy            = "DROP"     # 丢弃所有入站
+  description       = "拒绝所有入站流量"
+}
+
+resource "tencentcloud_security_group_rule" "allow_egress" {
+  security_group_id = tencentcloud_security_group.baseline_sg.id
+  type              = "egress"
+  cidr_ip           = "0.0.0.0/0"
+  ip_protocol       = "ALL"
+  policy            = "ACCEPT"   # 允许所有出站
+  description       = "允许所有出站流量"
+}
 #创建超级节点
 resource "tencentcloud_kubernetes_serverless_node_pool" "example" {
   cluster_id = "<cls-id>"
