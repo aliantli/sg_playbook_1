@@ -1,6 +1,6 @@
 resource "tencentcloud_security_group" "baseline_sg" {
   name        = "deny-all-inbound"
-  description = "仅放通22端口，出站全放通"
+  description = "入站仅放通22端口，出站全放通"
   tags = {
    <key> ="<values>"
   }
