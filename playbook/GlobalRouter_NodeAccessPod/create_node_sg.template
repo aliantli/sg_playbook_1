@@ -45,7 +45,7 @@ resource "tencentcloud_kubernetes_native_node_pool" "native_nodepool_cvm" {
     health_check_policy_name = null
     enable_autoscaling       = false
     host_name_pattern        = null
-    replicas                 = 1                #节点池内节点数量
+    replicas                 = 2               #节点池内节点数量
     machine_type             = "NativeCVM"     # Native原生节点需要开启tat组件才能登录，NativeCVM原生节点CVM模式不需要tat组件但需要用ssh密钥登录
 
     system_disk {
