@@ -27,7 +27,7 @@ TKE版本>=1.20.6
 [root@VM-35-139-tlinux terraform]# sh create_node_tf.sh
 [root@VM-35-139-tlinux terraform]# terraform apply -auto-approve
 ```
- 2.创建两个pod访问并分别绑定在两个原生节点上
+ 2.创建两个deployment并分别绑定在两个原生节点上
 
 ```
 [root@VM-35-139-tlinux terraform]# sh setup_deploy_yaml.sh
