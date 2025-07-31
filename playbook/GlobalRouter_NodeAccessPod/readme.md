@@ -7,7 +7,7 @@
 Global Router下节点与pod跨节点访问:<br>
 [<img width="546" height="340" alt="Clipboard_Screenshot_1753962179" src="https://github.com/user-attachments/assets/2155a6ec-3a91-4b7a-865c-588daccd486f" />
 ](https://github.com/aliantli/sg_playbook_1/blob/f355672b8232e6a6cff86451e73b7aae16c2c1a9/playbook/GlobalRouter_NodeAccessPod/image/flowchart2.md)
- <br>&emsp;在日常生产环境中可以通过在安全组2位置是设置规则来限制流量出入(安全组1位置一般不做限制)，以此控制入口流量的基础过滤，实现流量的精细管控，保障Pod资源安全
+ <br>&emsp;在日常生产环境中可以通过上述位置设置规则来限制流量入站(一般对流量出站不做限制)，以此控制入口流量的基础过滤，实现流量的精细管控，保障Pod资源安全
 # 环境部署
 ## 前提条件
 **1.tke集群要求**
@@ -53,9 +53,9 @@ podname:nginx-pod       pod_ip:172.17.0.131
 curl: (28) Failed to connect to 172.17.0.131 port 80: Connection timed out
 ```
 排查方向:
-```
-节点层面：出现这种情况一般为节点组网卡安全组配置问题，前往节点所绑定的安全组，查看其是否允许内网ip访问访问端口，如果未放通放通即可
-```
+`
+节点层面：出现这种情况一般为节点组网卡安全组配置问题，前往节点所绑定的安全组，查看其是否允许节点A访问访问端口，如果未放通放通即可
+`
 # 演练环境清理
 ```
 [root@VM-35-20-tlinux terraform]# kubectl delete apply -f deployment.yaml
