@@ -39,3 +39,18 @@ resource "tencentcloud_kubernetes_serverless_node_pool" "example" {
     "label1" : "value1",
   }
 }
+resource "tencentcloud_kubernetes_serverless_node_pool" "example2" {
+  cluster_id = "<cls-id>"
+  name       = "tf_example_serverless_node_pool2"
+
+  serverless_nodes {
+    display_name = "tf_example_serverless_node2"
+    subnet_id    = "<sub-id>"
+  }
+
+
+  security_group_ids = [tencentcloud_security_group.baseline_sg.id]
+  labels = {
+    "label2" : "value2",
+  }
+}
